@@ -1,8 +1,26 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/tabBar/home/index",
+    "pages/tabBar/order/index",
+    "pages/tabBar/me/index"
   ],
+  "subPackages": [{
+    "root": "pages/home",
+    "pages": [
+      "menuDetails/index"
+    ]
+  }, {
+    "root": "pages/order",
+    "pages": [
+      "orderDetails/index"
+    ]
+  }, {
+    "root": "pages/me",
+    "pages": [
+      "editInfo/index",
+      "feedBack/index"
+    ]
+  }],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
@@ -15,6 +33,30 @@
       "sdkVersionBegin": "3.0.0",
       "sdkVersionEnd": "15.255.255"
     }
+  },
+  "tabBar": {
+    "color": "#023E8A",
+    "selectedColor": "#48CAE4",
+    "position": "bottom",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/tabBar/home/index",
+        "iconPath": "",
+        "selectedIconPath": "",
+        "text": "首页"
+      }, {
+        "pagePath": "pages/tabBar/order/index",
+        "iconPath": "",
+        "selectedIconPath": "",
+        "text": "订单"
+      }, {
+        "pagePath": "pages/tabBar/me/index",
+        "iconPath": "",
+        "selectedIconPath": "",
+        "text": "我的"
+      }
+    ]
   },
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
