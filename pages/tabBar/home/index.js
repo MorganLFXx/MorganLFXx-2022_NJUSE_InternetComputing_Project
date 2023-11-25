@@ -1,11 +1,33 @@
 // pages/tabBar/home/index.js
-Page({
+import {ItemOfPerson, Campus, CampusName, Canteen, CanteenName, Window, WindowName} from "../../enumerations"
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
+    //previewLMRs: [],//用于存储从后端数据库中加载而来的菜品信息
+    //测试数据:
+    previewLMRs: [{
 
+    }, {
+
+    }],
+    pickers:[{
+      itemIndex: ItemOfPerson.campus,
+      hint: "校区筛选",
+      selections: Object.getOwnPropertyNames(Campus),
+    }, {
+      itemIndex: ItemOfPerson.canteen,
+      hint: "食堂筛选",
+      selections: Object.getOwnPropertyNames(Canteen),
+    }, {
+      itemIndex: ItemOfPerson.window,
+      hint: "窗口筛选",
+      selections: Object.getOwnPropertyNames(Window),
+    }],
+    isReady: false,//判断三个筛选栏是否筛选完毕
+    isRight: false,//判断三个筛选栏的排列是否正确
   },
 
   /**
