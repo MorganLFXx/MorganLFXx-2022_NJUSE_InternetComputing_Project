@@ -42,18 +42,18 @@
     "list": [
       {
         "pagePath": "pages/tabBar/home/index",
-        "iconPath": "",
-        "selectedIconPath": "",
+        "iconPath": "resources/navBar/unselectedHome.png",
+        "selectedIconPath": "resources/navBar/selectedHome.png",
         "text": "首页"
       }, {
         "pagePath": "pages/tabBar/order/index",
-        "iconPath": "",
-        "selectedIconPath": "",
+        "iconPath": "resources/navBar/unselectedOrder.png",
+        "selectedIconPath": "resources/navBar/selectedOrder.png",
         "text": "订单"
       }, {
         "pagePath": "pages/tabBar/me/index",
-        "iconPath": "",
-        "selectedIconPath": "",
+        "iconPath": "resources/navBar/unselectedMe.png",
+        "selectedIconPath": "resources/navBar/selectedMe.png",
         "text": "我的"
       }
     ]
