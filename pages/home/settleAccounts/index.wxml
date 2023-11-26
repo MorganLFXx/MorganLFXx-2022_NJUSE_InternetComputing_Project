@@ -1,0 +1,17 @@
+<!--菜品信息栏 --ykg-->
+<view class="meal_info">
+  <import src="../../form/form" />
+  <view wx:for="{{previewLMRs}}" wx:key="midText" wx:for-item="preivewLMR">
+    <template is="previewLMR" data="{{...previewLMRs[index]}}" />
+  </view>
+</view>
+
+<!--结算栏 --ykg-->
+<view class="settle_accounts_area">
+  <view class="settle_accounts_area_left">
+    <text class="settle_accounts_area_left_left_text">总计：</text><text class="settle_accounts_area_left_right">{{price + '￥'}}</text>
+  </view>
+  <view class="settle_accounts_area_right">
+    <button class="settle_accounts_area_right_btn" bindtap="settleAccounts">结算</button><!--可能要调用微信支付的api --ykg-->
+  </view>
+</view>

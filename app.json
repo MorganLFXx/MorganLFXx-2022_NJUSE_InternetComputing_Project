@@ -7,7 +7,9 @@
   "subPackages": [{
     "root": "pages/home",
     "pages": [
-      "menuDetails/index"
+      "menuDetails/index",
+      "settleAccounts/index",
+      "editInfo/index"
     ]
   }, {
     "root": "pages/order",

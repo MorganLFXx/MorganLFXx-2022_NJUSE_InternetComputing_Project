@@ -1,2 +1,12 @@
-<!--pages/tabBar/order/index.wxml-->
-<text>pages/tabBar/order/index.wxml</text>
+<!--订单明细栏 --ykg-->
+<view>
+  <import src="../../form/form" />
+  <view wx:for="{{previewLMRs}}" wx:key="midText" wx:for-item="previewLMR">
+    <template is="previewLMR" data="{{...previewLMRs[index]}}" />
+  </view>
+</view>
+
+<!--编辑按钮 --ykg-->
+<view class="edit_area">
+  <image class="edit_area_btn" src="{{imagePath}}"></image>
+</view>
