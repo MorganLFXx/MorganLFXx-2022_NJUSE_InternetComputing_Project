@@ -20,7 +20,7 @@
 
 <!--“左右式”的展示框 --ykg-->
 <template name="previewLR">
-  <view wx:if="{{conditionForDisplay}}" class="preview_area">
+  <view wx:if="{{conditionForDisplay}}" class="preview_area" bindtap="tapHandler">
     <view class="preview_area_left">
       <image class="preview_area_left_img" src="{{imagePath}}"></image>
     </view>
@@ -34,7 +34,7 @@
 <template name="previewLMR">
   <view wx:if="{{conditionForDisplay}}" class="preview_area">
     <view class="preview_area_left">
-      <image class="preview_area_left_img" src="{{imagePath}}"></image>
+      <image class="preview_area_left_img" bindtap="tapHandler" src="{{imagePath}}"></image>
     </view>
     <view class="preview_area_rightLMR">
       <view class="preview_area_rightLMR_left"><!--中间部分-->

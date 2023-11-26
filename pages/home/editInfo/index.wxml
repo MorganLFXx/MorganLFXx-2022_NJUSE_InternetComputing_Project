@@ -1,2 +1,14 @@
-<!--pages/home/editInfo/index.wxml-->
-<text>pages/home/editInfo/index.wxml</text>
+<!--修改菜品图片-->
+<view>
+
+</view>
+
+<!--修改菜品介绍-->
+<view>
+
+</view>
+
+<!--提交按钮-->
+<view>
+
+</view>

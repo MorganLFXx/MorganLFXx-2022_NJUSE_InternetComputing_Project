@@ -1,18 +1,24 @@
-<!--pages/tabBar/home/index.wxml-->
+<!--筛选栏-->
 <view class="top_screen">
   <import src="../../form/form" />
-  <view wx:for="{{pickers}}" wx:key="hint" wx:for-item="picker"><!--筛选栏-->
+  <view wx:for="{{pickers}}" wx:key="hint" wx:for-item="picker">
     <template is="picker" data="{{...pickers[index]}}" />
   </view>
 </view>
 
-<view wx:if="{{isReady && isRight}}"><!--展示栏-->
+<view wx:if="{{isReady && isRight}}"><!--展示栏, 只有当选定校区、食堂、窗口后,才会展示-->
   <import src="../../form/form" />
   <view wx:for="{{previewLMRs}}" wx:key="imagePath" wx:for-item="previewLMRs">
-    <template is="previewLMR" data="{{...previewLMRs[index]}}" />
+  <template is="previewLMR" data="{{...previewLMRs[index]}}" />
   </view>
 </view>
-<view wx:else>
+<view wx:else><!--没选定或选择不正确时，会出现提示-->
 
 </view>
+
+<!--悬浮按钮，跳转至结算页面-->
+<view class="hover_btn">
+  <image class="hover_btn_img" src="{{hoverBtnImgPath}}" bind:tap="toSettleAccounts"></image>
+</view>
+
 <!--注意下拉会对该页面进行刷新操作-->

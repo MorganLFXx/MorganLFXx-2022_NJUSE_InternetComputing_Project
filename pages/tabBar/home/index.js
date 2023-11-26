@@ -7,7 +7,7 @@ Page({
    */
   data: {
     //previewLMRs: [],//用于存储从后端数据库中加载而来的菜品信息
-    //测试数据: conditionForDisplay放于了onLoad函数中，注意，左右按钮的图标会随着用户访问的身份不同而发生变化 --ykg
+    //测试数据: conditionForDisplay放于了onLoad函数中，注意，左右按钮的图标机器绑定的函数会随着用户访问的身份不同而发生变化 --ykg
     previewLMRs: [{
       imagePath: "../../../resources/navBar/unselectedHome.png",
       midText: "测试菜品",
@@ -24,7 +24,7 @@ Page({
       rightBtn: "../../../resources/navBar/unselectedOrder.png",
     }],
     pickers:[{
-      itemIndex: ItemOfPerson.campus,
+      itemIndex: ItemOfPerson.campus,//判断是筛选什么 --ykg，于changeHandler中调用
       hint: "校区筛选",
       selections: Object.getOwnPropertyNames(Campus),
     }, {
@@ -44,6 +44,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+
+  },
+
+  changeHandler() {
+    //todo
+  },
+
+  tapHandler(){
+    //todo
+  },
+
+  toSettleAccounts() {
 
   },
 
