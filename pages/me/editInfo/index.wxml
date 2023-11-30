@@ -1,2 +1,14 @@
-<!--pages/me/editInfo/index.wxml-->
-<text>pages/me/editInfo/index.wxml</text>
+<!--输入框-->
+<view class="edit_area">
+  <import src="../../form/form" />
+  <view wx:for="{{entries}}" wx:key="hint" wx:for-item="entry">
+    <template is="entry" data="{{...entries[index]}}" />
+  </view>
+  <view wx:for="{{pickers}}" wx:key="hint" wx:for-item="picker">
+    <template is="picker" data="{{...pickers[index]}}" />
+  </view>
+</view>
+<!--提交按钮-->
+<view class="edit_area_submit">
+  <button disabled="{{!isReady || isSubmitted}}" class="edit_area_submit_btn" bindtap="submit">{{isSubmitted ? "已提交" : "确认提交"}}</button>
+</view>

@@ -1,4 +1,4 @@
-<!--订单明细栏 --ykg-->
+<!--订单明细栏，记载的是之前的所有的订单 --ykg-->
 <view>
   <import src="../../form/form" />
   <view wx:for="{{previewLMRs}}" wx:key="midText" wx:for-item="previewLMR">
