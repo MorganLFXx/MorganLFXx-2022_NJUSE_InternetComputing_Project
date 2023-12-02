@@ -1,5 +1,15 @@
 // pages/tabBar/home/index.js
-import {ItemOfPerson, Campus, CampusName, Canteen, CanteenName, Window, WindowName} from "../../enumerations"
+import {
+  ItemOfPerson,
+  Campus,
+  CampusName,
+  Canteen,
+  CanteenName,
+  Window,
+  WindowName
+} from "../../enumerations"
+
+let identity; //于onLoad函数中从后端把身份加载出来
 
 Page({
   /**
@@ -15,6 +25,7 @@ Page({
       hasBtns: true,
       leftBtn: "../../../resources/navBar/unselectedMe.png",
       rightBtn: "../../../resources/navBar/unselectedOrder.png",
+      num: 0,
     }, {
       imagePath: "../../../resources/navBar/unselectedHome.png",
       midText: "测试菜品",
@@ -22,9 +33,10 @@ Page({
       hasBtns: true,
       leftBtn: "../../../resources/navBar/unselectedMe.png",
       rightBtn: "../../../resources/navBar/unselectedOrder.png",
+      num: 0,
     }],
-    pickers:[{
-      itemIndex: ItemOfPerson.campus,//判断是筛选什么 --ykg，于changeHandler中调用
+    pickers: [{
+      itemIndex: ItemOfPerson.campus, //判断是筛选什么 --ykg，于changeHandler中调用
       hint: "校区筛选",
       selections: Object.getOwnPropertyNames(Campus),
     }, {
@@ -36,8 +48,8 @@ Page({
       hint: "窗口筛选",
       selections: Object.getOwnPropertyNames(Window),
     }],
-    isReady: false,//判断三个筛选栏是否筛选完毕
-    isRight: false,//判断三个筛选栏的排列是否正确
+    isReady: false, //判断三个筛选栏是否筛选完毕
+    isRight: false, //判断三个筛选栏的排列是否正确
   },
 
   /**
@@ -47,16 +59,47 @@ Page({
 
   },
 
+  leftBtnHandler(e) {
+    if (identity) { //厨师身份，进行删除
+
+    } else {
+      dishIndex = parseInt(e.currentTarget.dataset.index);
+      var previewLMRs = this.data.previewLMRs;
+      previewLMRs[dishIndex].num = previewLMRs[dishIndex].num + 1;
+      this.setData({
+        previewLMRs: previewLMRs,
+      })
+    }
+  },
+
+  rightBtnHandler(e) {
+    if (identity) { //厨师身份，进行修改
+
+    } else {
+      dishIndex = parseInt(e.currentTarget.dataset.index);
+      var previewLMRs = this.data.previewLMRs;
+      previewLMRs[dishIndex].num = previewLMRs[dishIndex].num - 1;
+      this.setData({
+        previewLMRs: previewLMRs,
+      })
+    }
+  },
+
   changeHandler() {
     //todo
   },
 
-  tapHandler(){
+  tapHandler() {
     //todo
   },
 
   toSettleAccounts() {
+    //todo: 将当前所选择的菜品，发送至后端，包括菜品的数量和在数组中的索引
 
+    //跳转至结算页面
+    wx.redirectTo({
+      url: '../../home/settleAccounts',
+    });
   },
 
   /**
