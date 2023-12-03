@@ -5,8 +5,3 @@
     <template is="previewLMR" data="{{...previewLMRs[index]}}" />
   </view>
 </view>
-
-<!--编辑按钮 --ykg-->
-<view class="edit_area">
-  <image class="edit_area_btn" src="{{imagePath}}"></image>
-</view>
