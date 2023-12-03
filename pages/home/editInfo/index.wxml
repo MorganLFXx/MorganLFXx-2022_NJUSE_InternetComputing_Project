@@ -1,14 +1,14 @@
+<!--厨师视角，在主页点击“编辑菜品”的按钮时，会出现的页面，负责修改指定菜品的信息-->
 <!--修改菜品图片-->
-<view>
-
+<view class="img_area">
+  <image src="{{lastImg}}" bind:tap="changeImg"></image>
 </view>
 
 <!--修改菜品介绍-->
-<view>
-
+<view class="edit_area_textarea">
+  <textarea data-itemindex="" class="edit_area_textarea_blank" model:value="" maxlength="500" placeholder="{{lastPreview}}" bindinput="inputHandler" />
 </view>
-
 <!--提交按钮-->
 <view>
-
+  <button disabled="{{!isReady || isSubmit}}" bind:tap="Submit">{{isSubmit ? '已提交' : '确认提交？'}}</button>
 </view>

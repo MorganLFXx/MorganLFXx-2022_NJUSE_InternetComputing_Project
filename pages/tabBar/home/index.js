@@ -50,6 +50,8 @@ Page({
     }],
     isReady: false, //判断三个筛选栏是否筛选完毕
     isRight: false, //判断三个筛选栏的排列是否正确
+    isChef: false,//判断当前用户的身份是否为厨师
+    addImg: "",//添加按钮图片的路径
   },
 
   /**
@@ -90,6 +92,10 @@ Page({
   },
 
   tapHandler() {
+    //todo
+  },
+
+  toAddDish(){
     //todo
   },
 

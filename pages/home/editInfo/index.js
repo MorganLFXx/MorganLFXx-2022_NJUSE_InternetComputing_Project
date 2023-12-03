@@ -5,14 +5,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    lastPreview: "",
+    lastImg:"",//其url从onLoad函数中载入
+    isReady:false,
+    isSubmit:false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
+  onLoad(options) {//获取从tabBar页面传递过来的图片和简介
+    lastImgUrl = options.lastImgUrl;
+    lastPreviewHash = options.lastPreviewHash;
+    //从后端将对应hash值的简介，读取出来
+    var lastPreview;
+    this.setData({
+      lastImg: lastImgUrl,
+      lastPreview: lastPreview,
+    })
   },
 
   /**

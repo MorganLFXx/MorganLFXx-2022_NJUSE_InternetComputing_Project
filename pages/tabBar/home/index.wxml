@@ -21,4 +21,9 @@
   <image class="hover_btn_img" src="{{hoverBtnImgPath}}" bind:tap="toSettleAccounts"></image>
 </view>
 
+<!--当在厨师视角时，会出现添加按钮，点击对应按钮，会进入addDish页面-->
+<view wx:if="{{isChef}}">
+  <image src="{{addImg}}" bind:tap="toAddDish"></image>
+</view>
+
 <!--注意下拉会对该页面进行刷新操作-->

@@ -1,27 +1,18 @@
-// pages/tabBar/order/index.js
-let identity;//获取身份
+// pages/home/addDish/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    //厨师视角看到的是，自己处理过的所有的菜品的信息，以及未完成的
-
+    pickers: [],
+    entries: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
-  },
-
-  leftBtnHandler(e) {//厨师视角，将当前菜品的状态标记为已完成
-
-  },
-
-  rightBtnHandler(e) {//将当前菜品从记录中删除，但仅限已完成菜品
 
   },
 

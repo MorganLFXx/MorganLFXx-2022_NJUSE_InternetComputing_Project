@@ -9,7 +9,8 @@
     "pages": [
       "menuDetails/index",
       "settleAccounts/index",
-      "editInfo/index"
+      "editInfo/index",
+      "addDish/index"
     ]
   }, {
     "root": "pages/order",
