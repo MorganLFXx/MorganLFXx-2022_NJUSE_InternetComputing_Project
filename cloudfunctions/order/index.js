@@ -1,5 +1,6 @@
 const inquireOrders = require("./inquireOrders/index");
 const inquireSpecificOrders = require("./inquireSpecificOrders/index");
+const settleOrder = require("./settleOrder/index");
 // 云函数入口文件
 const cloud = require("wx-server-sdk");
 
@@ -12,5 +13,7 @@ exports.main = async (event, context) => {
       return await inquireOrders.main(event, context);
     case "inquireSpecificOrders":
       return await inquireSpecificOrders.main(event, context);
+      case "settleOrder":
+      return await settleOrder.main(event, context);
   }
 };
