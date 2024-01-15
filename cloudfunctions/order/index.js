@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
       return await inquireOrders.main(event, context);
     case "inquireSpecificOrders":
       return await inquireSpecificOrders.main(event, context);
-      case "settleOrder":
+    case "settleOrder":
       return await settleOrder.main(event, context);
   }
 };
