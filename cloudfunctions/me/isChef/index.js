@@ -5,7 +5,7 @@ cloud.init({
 const db = cloud.database();
 const chefCollection = db.collection("chefs");
 exports.main = async (event, context) => {
-  const {verifyingID} = event
+	const id=event.chefID;
   try {
 	const res=await chefCollection.where({
 		chefID=verifyingID
