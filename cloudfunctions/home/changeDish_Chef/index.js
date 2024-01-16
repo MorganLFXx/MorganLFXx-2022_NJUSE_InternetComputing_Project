@@ -5,18 +5,42 @@ cloud.init({
 const db = cloud.database;
 const currentWindow = db.colletion("001001");
 exports.main = async (event, context) => {
-  currentWindow.add({
-    data: {
-      Description: event.Description,
-      ID: event.ID,
-      Name: event.Name,
-      Picture_path: event.Picture_path,
-      Price: event.Price,
-      Scores: event.Scores,
-      comments: event.comments,
-    },
-    success: (res) => {
-      console.log(res);
-    },
-  });
+  try {
+    const {
+      description,
+      id,
+      name,
+      picture_path,
+      price,
+      scores,
+      comment,
+    } = event;
+    const result = currentWindow.add({
+      data: {
+        Description: description,
+        ID: id,
+        Name: name,
+        Picture_path: picture_path,
+        Price: price,
+        Scores: scores,
+        comments: comment,
+      },
+      success: (res) => {
+        console.log(res);
+      },
+    });
+    if (result.stats.updated === 1) {
+      return {
+        success: true,
+        msg: "添加成功",
+      };
+    } else {
+      return {
+        success: false,
+        msg: "添加失败",
+      };
+    }
+  } catch (e) {
+    success: false, e;
+  }
 };

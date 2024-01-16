@@ -4,11 +4,12 @@ cloud.init({
 });
 const db = cloud.database();
 const chefCollection = db.collection("chefs");
+// 云函数入口函数
 exports.main = async (event, context) => {
-	const id=event.chefID;
+	const {newChefID}=event;
   try {
 	const res=await chefCollection.where({
-		chefID=verifyingID
+		chefID=newChefID
 	}).get();
     if (res.data.length > 0) {
       console.log("true")

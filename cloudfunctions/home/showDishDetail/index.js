@@ -11,7 +11,7 @@ exports.main = async (event, context) => {
 
     // 查询数据库中对应菜品的详情
     const result = await db.collection('dishes').where({
-      name: dishName,
+      Name: dishName,
     }).get();
 
     // 返回成功和查询到的菜品详情
