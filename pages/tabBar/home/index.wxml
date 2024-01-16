@@ -10,11 +10,24 @@
   <import src="../../form/form" />
   <view wx:for="{{previewLMRs}}" wx:key="imagePath" wx:for-item="previewLMRs">
   <template is="previewLMR" data="{{...previewLMRs[index]}}" />
-  </view>
+  </view> 
 </view>
 <view wx:else><!--没选定或选择不正确时，会出现提示-->
 
 </view>
+<!--样式
+<view class="dish_panel">
+<image src="路径" mode="" class="dish_picture"/>
+<view class="dish_describe">
+  <view class="dish_name">菜名</view>
+  <view class="dish_price">￥价格</view>
+  <view class="dish_buy">购买 </view>
+</view>
+</view>
+-->
+
+
+
 
 <!--悬浮按钮，跳转至结算页面-->
 <view class="hover_btn">

@@ -1,1 +1,50 @@
 /* pages/tabBar/home/index.wxss */
+view.top_screen{
+  height: 200;
+  width: 100;
+  color:"#023E8A";
+  background-color: aqua;
+}
+view.dish_panel{
+  height: 100px;
+  border:2px solid black;
+  display: flex;
+  border-width:2px 0px 2px 0px;
+  margin: -2px 0 0 -2px;
+}
+.dish_picture{
+  width: 100px;
+  height: 100px;
+}
+.dish_describe{
+  width: 212px;
+  display: block;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  margin: 0 0 0 10px;
+}
+.dish_name{
+  position: absolute;
+  top: 10px;
+  font-size: 20px;
+  font-weight: bold
+}
+.dish_price{
+  font-size: 20px;
+  font-weight: bold;
+  top: 40px;
+  position: absolute;
+  top: 65px;
+}
+.dish_buy{
+  width: 80px;
+  height: 20px;
+  background-color: rgb(255, 115, 0);
+  border-radius: 12px;
+  position: absolute;
+  top: 70px;
+  left:120px;
+  text-indent:0px;
+  text-align:center;
+}

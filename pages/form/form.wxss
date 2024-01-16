@@ -1,7 +1,7 @@
 .power_blank {
   width: 90%;
   margin-left: 5%;
-};
+}
 
 .power_errorMsg {
   color: red;
