@@ -8,11 +8,15 @@ exports.main = async (event, context) => {
     const { score, windowNO, dishID } = event;
     const window = db.collection(windowNO);
     //update
-    const result = await window.doc(dishID).update({
-      data: {
-        Scores: _.push(score),
-      },
-    });
+    const result = await window
+      .where({
+        ID: dishID,
+      })
+      .update({
+        data: {
+          Scores: _.push(score),
+        },
+      });
     //return new average
     const data = await window.doc(dishID).get();
     const array = data.Scores;

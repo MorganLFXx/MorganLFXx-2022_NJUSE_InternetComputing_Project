@@ -10,7 +10,6 @@ const db = cloud.database();
 exports.main = async (event, context) => {
   try {
     const { userId, orderNo } = event;
-
     // 查询对应用户ID和订单编号的订单详情数据
     const order = await db
       .collection(`orders_${userId}`)
