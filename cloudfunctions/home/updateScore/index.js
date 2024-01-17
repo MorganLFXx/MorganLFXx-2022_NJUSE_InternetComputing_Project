@@ -25,7 +25,20 @@ exports.main = async (event, context) => {
     for (var i = 0; i < length; i++) {
       sum += array[i];
     }
-    return sum / length;
+    const average = sum / length;
+    if (average > 0) {
+      return {
+        averageNum: average,
+        success: true,
+        msg: "Update successed!",
+      };
+    } else {
+      return {
+        averageNum: 0,
+        success: false,
+        msg: "Update failed!",
+      };
+    }
   } catch (error) {
     return {
       score: 0, //平均值为0代表出问题了
