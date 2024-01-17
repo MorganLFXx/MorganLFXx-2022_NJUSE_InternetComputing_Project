@@ -2,7 +2,6 @@ const showMenuInTheWindow = require("./showMenuInTheWindow/index");
 const showDishDetail = require("./showDishDetail/index");
 const changeDish = require("./changeDish_Chef/index");
 const deleteDish = require("./deleteDish_Chef/index");
-const addComment = require("./addComment/index");
 const updateScore = require("./updateScore/index");
 // 云函数入口文件
 const cloud = require("wx-server-sdk");
@@ -20,8 +19,6 @@ exports.main = async (event, context) => {
       return await changeDish_Chef.main(event, context);
     case "deleteDish_Chef":
       return await deleteDish_Chef.main(event, context);
-    case "addComment":
-      return await addComment.main(event, context);
     case "updateScore":
       return await updateScore.main(event, context);
   }
