@@ -1,6 +1,8 @@
 // 云函数入口文件
-const cloud = require('wx-server-sdk');
-cloud.init();
+const cloud = require("wx-server-sdk");
+cloud.init({
+  env: cloud.DYNAMIC_CURRENT_ENV,
+});
 
 const db = cloud.database();
 
@@ -10,14 +12,17 @@ exports.main = async (event, context) => {
     const { userId, orderNo } = event;
 
     // 查询对应用户ID和订单编号的订单详情数据
-    const order = await db.collection(`orders_${userId}`).where({
-      No: orderNo,
-    }).get();
+    const order = await db
+      .collection(`orders_${userId}`)
+      .where({
+        No: orderNo,
+      })
+      .get();
 
     if (order.data.length === 0) {
       return {
         success: false,
-        message: '未找到对应订单',
+        message: "未找到对应订单",
       };
     }
 
@@ -26,7 +31,7 @@ exports.main = async (event, context) => {
       order: order.data[0],
     };
   } catch (error) {
-    console.error('云函数执行失败', error);
+    console.error("云函数执行失败", error);
     return {
       success: false,
       error,

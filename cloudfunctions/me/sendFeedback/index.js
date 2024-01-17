@@ -1,6 +1,8 @@
-const cloud = require('wx-server-sdk');
+const cloud = require("wx-server-sdk");
 
-cloud.init();
+cloud.init({
+  env: cloud.DYNAMIC_CURRENT_ENV,
+});
 
 const db = cloud.database();
 
@@ -10,7 +12,7 @@ exports.main = async (event, context) => {
     const { feedbackContent } = event; // 从前端传入的反馈内容
 
     // 在数据库中保存反馈信息
-    const result = await db.collection('feedback').add({
+    const result = await db.collection("feedback").add({
       data: {
         content: feedbackContent,
         timestamp: new Date(),

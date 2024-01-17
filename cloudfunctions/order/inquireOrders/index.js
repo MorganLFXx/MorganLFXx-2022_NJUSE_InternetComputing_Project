@@ -1,6 +1,8 @@
 // 云函数入口文件
-const cloud = require('wx-server-sdk');
-cloud.init();
+const cloud = require("wx-server-sdk");
+cloud.init({
+  env: cloud.DYNAMIC_CURRENT_ENV,
+});
 
 const db = cloud.database();
 
@@ -17,7 +19,7 @@ exports.main = async (event, context) => {
       orders: orders.data,
     };
   } catch (error) {
-    console.error('云函数执行失败', error);
+    console.error("云函数执行失败", error);
     return {
       success: false,
       error,
