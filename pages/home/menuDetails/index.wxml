@@ -7,7 +7,15 @@
 <view class="text_preview">
   <text class="text_preview_text">{{introduction}}</text>
 </view>
-
+<!--页面详情的模板
+<view>
+  <image src="/image/R.jpg" mode="aspectFill" class="picture_preview_img"/>
+  <image src="/image/4.jpg" mode="aspectFill" class="quit_button"/>
+  <view class="text_preview_name">名字</view>
+  <view class="text_preview_score">虎扑评分</view>
+  <view class="text_preview_text">食物描述.</view>
+</view>
+-->
 <!--厨师视角下的可以看到的编辑和删除按钮-->
 <view wx:if="{{isChef}}" class="edit_btns">
   <view class="edit_btns_block"><button class="edit_btns_block_delete" bindtap="deleteHandler"></button></view>

@@ -1,19 +1,29 @@
 <!--用户展示区-->
 <view class="userblank">
+  <view class="blank"></view>
+  <view class="top_screen">食堂订餐</view>
   <view class="userblank_left">
-    <image class="userblank_left_image" src="{{portraitSrc}}"></image><!--头像区-->
+    <image class="userblank_left_image" src="/resources/image/unknown.jpg"></image><!--头像区-->
   </view>
   <view class="userblank_right">
     <view class="userblank_right_left">
-      <view class="userblank_right_left_text">{{'昵称：' + nickname}}</view>
-      <view class="userblank_right_left_text">{{'身份：' + identity}}</view>
+      <view class="userblank_right_left_nickname">{{'昵称：' + nickname}}</view>
+      <view>\n\n</view>
+      <view class="userblank_right_left_identity">{{'身份：' + identity}}</view>
     </view>
     <view class="userblank_right_right">
-      <image class="userblank_right_right_img" src="editBtn" bindtap="toEditInfo"></image>
+      <image class="userblank_right_right_img" src="/resources/image/edit.png" bindtap="toEditInfo"></image>
     </view><!--修改按钮-->
   </view>
 </view>
-
+<view class="feedback">
+<image src="/resources/image/img.png" mode="aspectFill" class="feedback_img"/>
+<view class="feedback_text">意见反馈</view>
+</view>
+<view class="version">
+  <image src="/resources/image/img.png" mode="aspectFill" class="version_img"/>
+  <view class="feedback_text">版本信息</view>
+</view>
 <!--选项栏-->
 <view>
   <import src="../../form/form" />

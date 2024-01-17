@@ -5,46 +5,47 @@ view.top_screen{
   color:"#023E8A";
   background-color: aqua;
 }
-view.dish_panel{
-  height: 100px;
+.dish_panel{
+  width: 100vw;
+  height: 30vw ;
   border:2px solid black;
   display: flex;
-  border-width:2px 0px 2px 0px;
   margin: -2px 0 0 -2px;
+  max-height: 150px;
 }
-.dish_picture{
-  width: 100px;
-  height: 100px;
+.dish_panel image{
+  width: 30vw;
+  height: 30vw;
 }
 .dish_describe{
-  width: 212px;
+  width: 67vw;
   display: block;
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
-  margin: 0 0 0 10px;
+  margin: 0 0 0 3vw;
 }
 .dish_name{
   position: absolute;
-  top: 10px;
-  font-size: 20px;
+  top: 3vw;
+  font-size: 6vw;
   font-weight: bold
 }
 .dish_price{
-  font-size: 20px;
+  font-size: 6vw;
   font-weight: bold;
-  top: 40px;
   position: absolute;
-  top: 65px;
+  top: 20vw;
 }
 .dish_buy{
-  width: 80px;
-  height: 20px;
+  width: 20vw;
+  height: 7vw;
   background-color: rgb(255, 115, 0);
   border-radius: 12px;
+  font-size: 5vw;
   position: absolute;
-  top: 70px;
-  left:120px;
+  top: 20vw;
+  left:43vw ;
   text-indent:0px;
   text-align:center;
 }

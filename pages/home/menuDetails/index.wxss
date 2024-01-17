@@ -1,55 +1,28 @@
 /* pages/home/menuDetails/index.wxss */
-view.top_screen{
-  height: 70px;
-  background-color: rgb(167, 92, 238);
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.picture_preview_img{
   position: sticky;
-  top: 0px;
-  z-index: 100;
+  width: 100vw;
+  top: 0;
+  left: 0;
 }
-view.dish_panel{
-  height: 100px;
-  border:2px solid black;
-  display: flex;
-  border-width:2px 0px 2px 0px;
-  margin: -2px 0 0 -2px;
-}
-.dish_picture{
-  width: 100px;
-  height: 100px;
-}
-.dish_describe{
-  width: 212px;
-  display: block;
-  flex-direction: column;
-  justify-content: flex-start;
-  position: relative;
-  margin: 0 0 0 10px;
-}
-.dish_name{
-  position: absolute;
-  top: 10px;
-  font-size: 20px;
-  font-weight: bold
-}
-.dish_price{
-  font-size: 20px;
+.text_preview_name{
+  font-size: 7vw;
   font-weight: bold;
-  top: 40px;
-  position: absolute;
-  top: 65px;
+  padding-left: 5vw;
 }
-.dish_buy{
-  width: 80px;
-  height: 20px;
-  background-color: rgb(255, 115, 0);
-  border-radius: 12px;
-  position: absolute;
-  top: 70px;
-  left:120px;
-  text-indent:0px;
-  text-align:center;
+.text_preview_score{
+  font-weight: bold;
+  font-size: 5vw;
+  padding-left: 5vw;
+}
+.text_preview_text{
+  font-size: 5vw;
+  padding-left: 5vw;
+}
+.quit_button{
+  position: fixed;
+  top: 0vw;
+  left: 0vw;
+  width: 20vw;
+  height: 20vw;
 }
