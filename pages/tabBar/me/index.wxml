@@ -1,0 +1,23 @@
+<view class="userblank">
+  <view class="userblank_left">
+    <image class="userblank_left_image" src="{{portraitSrc}}"></image><!--头像区-->
+  </view>
+  <view class="userblank_right">
+    <view class="userblank_right_left">
+      <view class="userblank_right_left_text">{{'昵称：' + nickname}}</view>
+      <view class="userblank_right_left_text">{{'身份：' + identity}}</view>
+    </view>
+    <view class="userblank_right_right">
+      <image class="userblank_right_right_img" src="editBtn" bindtap="toEditInfo"></image>
+    </view><!--修改按钮-->
+  </view>
+</view>
+
+
+<!--选项栏-->
+<view>
+  <import src="../../form/form" />
+  <view wx:for="{{previewLRs}}" wx:key="rightText" wx:for-item="previewLR">
+    <template is="previewLR" data="{{...previewLRs[index]}}"/>
+  </view>
+</view>

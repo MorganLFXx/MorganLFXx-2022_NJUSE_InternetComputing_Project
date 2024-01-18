@@ -1,0 +1,49 @@
+/* pages/tabBar/me/index.wxss */
+@import "../../form/form.wxss";
+.userblank {
+  height: 200rpx;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userblank_left {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userblank_left_image {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.userblank_right {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userblank_right_left {
+  width: 60%;
+}
+
+.userblank_right_left_text {
+  font-size: 36rpx;
+}
+
+.userblank_right_right {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userblank_right_right_img {
+  width: 100rpx;
+  height: 100rpx;
+}

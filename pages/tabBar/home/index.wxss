@@ -1,0 +1,12 @@
+/* pages/tabBar/home/index.wxss */
+@import "../../form/form.wxss";
+.top_screen {
+  background-color: rgb(255, 255, 255);
+}
+
+.hint{
+  display: flex;
+  justify-content: center;
+  font-size: 24rpx;
+  color: red;
+}

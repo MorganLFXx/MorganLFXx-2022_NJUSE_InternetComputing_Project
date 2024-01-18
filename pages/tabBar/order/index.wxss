@@ -1,0 +1,17 @@
+/* pages/tabBar/order/index.wxss */
+@import "../../form/form.wxss";
+/* .blank{
+  width: 100vw;
+  height: 10vw;
+  background-color: rgb( 147, 90, 246);
+} */
+/* .top_screen{
+  width: 100vw;
+  height: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5vw;
+  font-weight: bold;
+  background-color: rgb( 147, 90, 246);
+} */

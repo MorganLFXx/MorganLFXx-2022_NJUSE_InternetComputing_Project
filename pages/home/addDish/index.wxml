@@ -1,0 +1,21 @@
+<!--pages/home/addDish/index.wxml-->
+<!--设置新菜品的校区，食堂，窗口的筛选栏-->
+<view class="picker_area">
+  <import src="../../form/form" />
+  <view wx:for="{{pickers}}" wx:key="hint" wx:for-item="picker">
+    <template is="picker" data="{{...pickers[index]}}" />
+  </view>
+</view>
+
+<!--设置新菜品的名称、价格-->
+<view class="input_area">
+  <import src="../../form/form" />
+  <view wx:for="{{entries}}" wx:key="hint" wx:for-item="entry">
+    <template is="entry" data="{{...entries[index]}}" />
+  </view>
+</view>
+
+<!--设置新菜品的介绍-->
+<view class="edit_area_textarea">
+  <textarea data-itemindex="" class="edit_area_textarea_blank" model:value="" maxlength="500" placeholder="菜品简介" bindinput="inputHandler" />
+</view>

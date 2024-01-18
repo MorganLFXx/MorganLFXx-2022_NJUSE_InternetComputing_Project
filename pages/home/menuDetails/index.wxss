@@ -1,0 +1,28 @@
+/* pages/home/menuDetails/index.wxss */
+.picture_preview_img{
+  position: sticky;
+  width: 100vw;
+  top: 0;
+  left: 0;
+}
+.text_preview_name{
+  font-size: 7vw;
+  font-weight: bold;
+  padding-left: 5vw;
+}
+.text_preview_score{
+  font-weight: bold;
+  font-size: 5vw;
+  padding-left: 5vw;
+}
+.text_preview_text{
+  font-size: 5vw;
+  padding-left: 5vw;
+}
+.quit_button{
+  position: fixed;
+  top: 0vw;
+  left: 0vw;
+  width: 20vw;
+  height: 20vw;
+}

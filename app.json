@@ -1,0 +1,68 @@
+{
+  "pages": [
+    "pages/tabBar/home/index",
+    "pages/tabBar/order/index",
+    "pages/tabBar/me/index"
+  ],
+  "subPackages": [{
+    "root": "pages/home",
+    "pages": [
+      "menuDetails/index",
+      "addDish/index"
+    ]
+  }, {
+    "root": "pages/order",
+    "pages": [
+      "orderDetails/index"
+    ]
+  }, {
+    "root": "pages/me",
+    "pages": [
+      "editInfo/index",
+      "feedBack/index"
+    ]
+  }],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFFFFF", 
+    "navigationBarTitleText": "食堂订餐",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "tabBar": {
+    "color": "#023E8A",
+    "selectedColor": "#48CAE4",
+    "position": "bottom",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/tabBar/home/index",
+        "iconPath": "resources/navBar/unselectedHome.png",
+        "selectedIconPath": "resources/navBar/selectedHome.png",
+        "text": "首页"
+      }, {
+        "pagePath": "pages/tabBar/order/index",
+        "iconPath": "resources/navBar/unselectedOrder.png",
+        "selectedIconPath": "resources/navBar/selectedOrder.png",
+        "text": "订单"
+      }, {
+        "pagePath": "pages/tabBar/me/index",
+        "iconPath": "resources/navBar/unselectedMe.png",
+        "selectedIconPath": "resources/navBar/selectedMe.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
