@@ -2,8 +2,8 @@
 export const StoragePath = ""//用于存放未来的云端的存储路径 --ykg
 
 export const UserType = {
-  学生: 0,
-  厨师: 1,
+  '学生': 0,
+  '厨师': 1,
 }
 
 export const UserTypeName = {
@@ -24,74 +24,69 @@ export const GenderName = {
 }
 
 export const Campus = {
-  '无': 0,
-  '仙林': 1,
-  '鼓楼': 2,
-  '苏州': 3,
-  '浦口': 4,
+  '仙林': 0,
+  '鼓楼': 1,
 } 
 
 export const CampusName = {
-  0: '无',
-  1: '仙林',
-  2: '鼓楼',
-  3: '苏州',
-  4: '浦口',
+  0: '仙林',
+  1: '鼓楼',
 }
 
 export const Canteen = {
-  '无': 0,
-  '一食堂': 1,
-  '二食堂': 2,
-  '三食堂': 3,
+  '一食堂': 0,
+  '二食堂': 1,
+  '三食堂': 2,
+  '鼓楼民族食堂': 3,
   '四食堂': 4,
   '五食堂': 5,
   '六食堂': 6,
-  '鼓楼民族食堂': 7,
-  '仙林民族食堂': 8,
-  '九食堂': 9,
-  '十食堂': 10,
-  '十二食堂': 12,
+  '仙林民族食堂': 7,
+  '九食堂': 8,
+  '十食堂': 9,
+  '十二食堂': 10,
 }
 
 export const CanteenName = {
-  0: '无',
-  1: '一食堂',
-  2: '二食堂',
-  3: '三食堂',
+  0: '一食堂',
+  1: '二食堂',
+  2: '三食堂',
+  3: '鼓楼民族食堂',
   4: '四食堂',
   5: '五食堂',
   6: '六食堂',
-  7: '鼓楼民族食堂',
-  8: '仙林民族食堂',
-  9: '九食堂',
-  10: '十食堂',
-  12: '十二食堂',
+  7: '仙林民族食堂',
+  8: '九食堂',
+  9: '十食堂',
+  10: '十二食堂',
 }
 
 export const Window = {
-  //todo: 等着调研一下食堂的窗口名 --ykg
+  '一窗口': 0, 
+  '二窗口': 1,
+  '三窗口': 2, 
+  '四窗口': 3, 
+  '五窗口': 4, 
+  '六窗口': 5,
 }
 
 export const WindowName = {
-  //todo: 等着调研一下食堂的窗口名 --ykg
+  0: '一窗口', 
+  1: '二窗口',
+  2: '三窗口', 
+  3: '四窗口', 
+  4: '五窗口', 
+  5: '六窗口',
 }
 
-export const ItemOfPerson = {
+export const ItemType = {
   name: 0,
   campus: 1,//校区
   canteen: 2,//食堂
   window: 3,//窗口
-  brief: 4,
-} 
-
-export const ItemOfDish = {
-  name: 5,
-  campus: 6,//校区
-  canteen: 7,//食堂
-  window: 8,//窗口
-  timeInfo: 9,
-  brief: 10,
-  status: 11,//菜品的烹饪状态
+  timeInfo: 4,
+  brief: 5,
+  status: 6,//菜品的烹饪状态
+  type: 7,
 }
 

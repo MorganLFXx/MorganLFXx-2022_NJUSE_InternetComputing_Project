@@ -12,13 +12,15 @@
 
 .pick_area {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-top: 5rpx;
   margin-bottom: 5rpx;
+  margin-right: 10%;
 }
 
 .pick_area_label{
-  color: darkgrey;
+  color: darkgray;
   margin-left: 30rpx;
 }
 
@@ -40,27 +42,30 @@
   width:100%;
   padding: 10rpx;
   background-color: white;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 300rpx;
+  height: 200rpx;
   box-sizing: border-box;
 }
 
 .preview_area_left {
   width: 25%;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .preview_area_left_img {
   border-radius: 50%;
-  width: 150rpx;
-  height: 150rpx;
+  width: 100rpx;
+  height: 100rpx;
 }
 
 .preview_area_rightLR {
   width:75%;
   padding: 5rpx;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -72,12 +77,14 @@
 .preview_area_rightLMR {
   width:75%;
   padding: 5rpx;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .preview_area_rightLMR_left {
   width: 25%;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -89,6 +96,7 @@
 
 .preview_area_rightLMR_right {
   width: 75%;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
@@ -103,6 +111,7 @@
 
 .preview_area_rightLMR_right_btns {
   width: 75%;
+  display: flex;
   justify-content: space-around;
   align-items: center;
 }

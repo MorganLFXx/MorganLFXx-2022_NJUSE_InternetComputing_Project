@@ -1,3 +1,5 @@
+<!--pages/me/editInfo/index.wxml-->
+<text>pages/me/editInfo/index.wxml</text>
 <!--输入框-->
 <view class="edit_area">
   <import src="../../form/form" />

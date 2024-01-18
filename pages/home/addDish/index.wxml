@@ -1,3 +1,4 @@
+<!--pages/home/addDish/index.wxml-->
 <!--设置新菜品的校区，食堂，窗口的筛选栏-->
 <view class="picker_area">
   <import src="../../form/form" />

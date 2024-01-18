@@ -6,14 +6,18 @@ Page({
    */
   data: {
     previewLRs:[{
-      imagePath: "",//到时候用云存储的路径，节省主包空间
-      rightText: "",
-      page: "",
+      imagePath: "../../../resources/image/edit.png",//到时候用云存储的路径，节省主包空间
+      rightText: "12",
+      page: "editInfo",
+      conditionForDisplay: true,
     }, {
-      imagePath: "",
-      rightText: "",
+      imagePath: "../../../resources/image/edit.png",
+      rightText: "13",
       page: "feedBack",
+      conditionForDisplay: true,
     }],
+    portraitSrc: "../../../resources/image/unknown.jpg",
+    editBtn: "../../../resources/image/unknown.png"
   },
 
   tapHandler(e) {
@@ -34,7 +38,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    console.log(2);
   },
 
   /**

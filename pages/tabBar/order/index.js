@@ -7,14 +7,32 @@ Page({
    */
   data: {
     //厨师视角看到的是，自己处理过的所有的菜品的信息，以及未完成的
-
+    previewLMRs: [{
+      imagePath: "../../../resources/navBar/unselectedHome.png",
+      midText: "测试菜品",
+      rightText: "14￥",
+      hasBtns: true,
+      leftBtn: "../../../resources/navBar/unselectedMe.png",
+      rightBtn: "../../../resources/navBar/unselectedOrder.png",
+      num: 0,
+      conditionForDisplay: true,//会在onLoad判定
+    }, {
+      imagePath: "../../../resources/navBar/unselectedHome.png",
+      midText: "测试菜品",
+      rightText: "14￥",
+      hasBtns: true,
+      leftBtn: "../../../resources/navBar/unselectedMe.png",
+      rightBtn: "../../../resources/navBar/unselectedOrder.png",
+      num: 0,
+      conditionForDisplay: true,
+    }],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    console.log(3);
   },
 
   leftBtnHandler(e) {//厨师视角，将当前菜品的状态标记为已完成

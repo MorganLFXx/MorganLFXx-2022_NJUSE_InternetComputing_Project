@@ -11,7 +11,7 @@
 <template name="picker">
   <view wx:if="{{conditionForDisplay}}" class="pick_area">
     <view class="pick_area_label">{{hint}}</view>
-    <picker mode="selector" range="{{selections}}" value="{{value}}" data-itemIndex="{{itemIndex}}" bindchange="changeHandler">
+    <picker mode="selector" range="{{selections}}" value="{{value}}" data-itemindex="{{itemIndex}}" bindchange="changeHandler">
       <view class="pick_area_picker">{{selections[value]}}</view>
     </picker>
   </view>

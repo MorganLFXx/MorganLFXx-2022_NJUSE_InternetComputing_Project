@@ -1,6 +1,4 @@
 <!--订单明细栏，记载的是之前的所有的订单 --ykg-->
-<view class="blank"></view>
-<view class="top_screen">历史订单</view>
 
 <view>
   <import src="../../form/form" />

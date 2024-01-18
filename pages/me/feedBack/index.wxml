@@ -1,16 +1,2 @@
-<!--输入框-->
-<view class="blank"></view>
-<view class="top_screen">意见反馈 </view>
-<view class="text">问题和意见</view>
-<textarea
-    placeholder="请填写200字以内的问题描述以便我们提供更好的帮助"
-    maxlength="200"
-    class="opinion_text"
-></textarea>
-<view class="text">联系方式（选填）</view>
-<textarea
-    placeholder="手机号码，用于与您联系"
-    maxlength="20"
-    class="opinion_communication"
-></textarea>
-<button class="feedback_btn" style="width: 40vw; height: 10vw;">提交</button>
+<!--pages/me/feedBack/index.wxml-->
+<text>pages/me/feedBack/index.wxml</text>
