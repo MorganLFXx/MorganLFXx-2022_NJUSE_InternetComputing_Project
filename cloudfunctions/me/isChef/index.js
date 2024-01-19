@@ -6,7 +6,7 @@ const db = cloud.database();
 const chefCollection = db.collection("chefs");
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const { newChefID } = event;
+  const newChefID = event.data.chefID;
   try {
     const res = await chefCollection
       .where({
@@ -14,16 +14,16 @@ exports.main = async (event, context) => {
       })
       .get();
     if (res.data.length > 0) {
-      console.log("true");
+      console.log("OK!");
       return {
         isValid: true,
-        errMsg: "",
+        errMsg: "Your ID is right!",
       };
     } else {
       console.log("false");
       return {
         isValid: false,
-        errMsg: "",
+        errMsg: "You entered wrong verification code!",
       };
     }
   } catch (err) {
