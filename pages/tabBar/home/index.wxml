@@ -7,6 +7,11 @@
 </view>
 
 <view wx:if="{{isRight}}"><!--展示栏, 只有当选定校区、食堂、窗口后,才会展示-->
+  <view><!--搜索栏-->
+    <input class="seek_input" placeholder="请输入您想要搜索的菜品名" bindinput="inputHandler" />
+    <view class="power_errorMsg">{{alarmUnlessFormed}}</view>
+    <view class="horizontal_line"></view>
+  </view>
   <import src="../../form/form" />
   <view wx:for="{{previewLMRs}}" wx:key="imagePath" wx:for-item="previewLMR">
   <template is="previewLMR" data="{{...previewLMRs[index]}}" />
@@ -18,12 +23,5 @@
 
 <!--悬浮按钮，跳转至结算页面-->
 <view wx:if="{{isRight}}" class="hover_btn">
-  <button class="hover_btn_img" bind:tap="toSettleAccounts">结算</button>
+  <button class="hover_btn_img" bind:tap="toSettleAccounts">{{isChef ? '添加' : '结算'}}</button>
 </view>
-
-<!--当在厨师视角时，会出现添加按钮，点击对应按钮，会进入addDish页面-->
-<view wx:if="{{isChef}}">
-  <image src="{{addImg}}" bind:tap="toAddDish"></image>
-</view>
-
-<!--注意下拉会对该页面进行刷新操作-->

@@ -5,7 +5,29 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+      previewLMRs: [{
+        index: 0,//它在当前数组的下标
+        imagePath: "../../../resources/navBar/unselectedHome.png",
+        midText: "测试菜品14￥",
+        price: 14,
+        rightText: 0,
+        id: "1111111111",
+        hasBtn: false,
+        leftBtn: "../../../resources/navBar/unselectedMe.png",
+        rightBtn: "../../../resources/navBar/unselectedOrder.png",
+        conditionForDisplay: true,//会在onLoad判定
+      }, {
+        index: 1,
+        imagePath: "../../../resources/navBar/unselectedHome.png",
+        midText: "测试菜品14￥",
+        price: 14,
+        rightText: 0,
+        id: "1111111111",
+        hasBtn: false,
+        leftBtn: "../../../resources/navBar/unselectedMe.png",
+        rightBtn: "../../../resources/navBar/unselectedOrder.png",
+        conditionForDisplay: true,
+      }],
     },
 
     /**

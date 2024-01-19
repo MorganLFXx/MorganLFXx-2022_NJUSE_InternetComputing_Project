@@ -1,1 +1,19 @@
 /* pages/me/feedBack/index.wxss */
+.feedBackArea{
+  width: 90%;
+  margin: 5%;
+  height:700rpx;
+}
+
+.horizontal_line {
+  margin-left: 5%;
+  width: 90%;
+  border-bottom: 1px solid #ccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.sum_btn {
+  background-color: green;
+  color: white;
+}

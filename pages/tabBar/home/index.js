@@ -10,6 +10,17 @@ import {
 } from "../../enumerations"
 
 let curCampus,curCanteen,curWindow
+let checkUserInfo
+
+require('../../util', 
+  (module)=>{
+    checkUserInfo = module.checkUserInfoLegality
+  },
+  (err)=>{
+    console.error(err)
+  }
+)
+
 
 Page({
   data: {
@@ -19,6 +30,7 @@ Page({
       index: 0,//它在当前数组的下标
       imagePath: "../../../resources/navBar/unselectedHome.png",
       midText: "测试菜品14￥",
+      price: 14,
       rightText: 0,
       id: "1111111111",
       hasBtn: true,
@@ -29,6 +41,7 @@ Page({
       index: 1,
       imagePath: "../../../resources/navBar/unselectedHome.png",
       midText: "测试菜品14￥",
+      price: 14,
       rightText: 0,
       id: "1111111111",
       hasBtn: true,
@@ -54,6 +67,9 @@ Page({
     addImg: "",//添加按钮图片的路径
     hint: "当前筛选栏的排列无效",
     hoverBtnImgPath: "/resources/image/unknown.jpg",
+    isStandard: false,
+    isEmpty: true,
+    alarmUnlessFormed: "窗口名应为全中文",
   },
 
   /**
@@ -61,7 +77,6 @@ Page({
    */
   onLoad(options) {
     //加载identity
-    console.log(ItemType.campus);
     var pickers = this.data.pickers;
     for(var picker of pickers){
       picker.conditionForDisplay = true;
@@ -144,13 +159,30 @@ Page({
     })//传递身份
   },
 
-  toAddDish(){
-    //todo
-  },
-
   toSettleAccounts() {
     //todo: 将当前所选择的菜品，发送至后端，包括菜品的数量和在数组中的索引还有价格
+    //厨师视角：进行添加菜品
+    if(this.data.isChef){
+      wx.navigateTo({
+        url: `/pages/home/editInfo/index?dishID=1111111111`,//全一广播地址
+      })
+    } else {
+      const previewLMRs = this.data.previewLMRs;
+      var sum = 0;
+      for(var i = 0;i<previewLMRs.length;i++){
+        sum += previewLMRs[i].rightText * previewLMRs[i].price; 
+      }
+    }
+  },
 
+  inputHandler(e) {
+    const value = e.detail.value;
+    var isFormed = checkUserInfo(value, ItemType.window);
+    var isEmpty = value.trim() === '';
+    this.setData({
+      isStandard: isFormed,
+      isEmpty: isEmpty,
+    })
   },
 
   /**

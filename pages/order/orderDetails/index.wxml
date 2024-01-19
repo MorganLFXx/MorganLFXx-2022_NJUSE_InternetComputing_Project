@@ -1,2 +1,9 @@
 <!--pages/order/orderDetails/index.wxml-->
-<text>pages/order/orderDetails/index.wxml</text>
+<view><!--展示栏, 只有当选定校区、食堂、窗口后,才会展示-->
+  <import src="../../form/form" />
+  <view wx:for="{{previewLMRs}}" wx:key="imagePath" wx:for-item="previewLMR">
+  <template is="previewLMR" data="{{...previewLMRs[index]}}" />
+  </view> 
+</view>
+
+

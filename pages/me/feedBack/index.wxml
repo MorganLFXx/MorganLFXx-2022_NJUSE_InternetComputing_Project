@@ -1,2 +1,7 @@
 <!--pages/me/feedBack/index.wxml-->
-<text>pages/me/feedBack/index.wxml</text>
+<textarea class="feedBackArea" maxlength="500" model:value="{{text}}" bindinput="inputHandler" placeholder="{{hint}}">
+</textarea>
+<view class="horizontal_line"></view>
+<view style="width: 100%; display: flex;justify-content: center;align-items: center;">
+  <button bindtap="submit" disabled="{{isEmpty || isSubmitted}}" class="sum_btn">{{isSummit ? '已提交' : '确认提交'}}</button>
+</view>

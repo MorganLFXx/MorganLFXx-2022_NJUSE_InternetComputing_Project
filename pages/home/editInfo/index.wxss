@@ -1,4 +1,5 @@
 /* pages/home/editInfo/index.wxss */
+
 .edit_area_textarea {
   margin: 5%;
 }

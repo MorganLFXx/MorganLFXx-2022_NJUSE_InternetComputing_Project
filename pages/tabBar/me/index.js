@@ -34,7 +34,14 @@ Page({
           url: `/pages/me/feedBack/index?userID=${this.data.userID}`,
         })
         break;
-      case 1:break;
+      case 1:
+        wx.showToast({
+          title: '当前版本1.1.0',
+          icon: 'none',
+          mask:true,
+          duration: 2000,
+        })
+      break;
     }
   },
 

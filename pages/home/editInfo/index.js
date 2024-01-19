@@ -1,4 +1,6 @@
 // pages/home/editInfo/index.js
+import {lastImgStoragePath} from "../../enumerations.js";
+
 Page({
 
   /**
@@ -19,7 +21,9 @@ Page({
     //从后端将对应hash值的简介，读取出来
     var id = options.dishID
     if(id == "1111111111"){//广播地址：新增菜品
-
+      this.setData({
+        lastImg: lastImgStoragePath,
+      })
     } else {
       this.setData({
         dishID: id,//获取dishID
