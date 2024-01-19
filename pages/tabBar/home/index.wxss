@@ -25,3 +25,7 @@
   width: 300rpx;
   height: 100rpx;
 }
+
+.seek_input {
+  margin-left: 30rpx;
+}

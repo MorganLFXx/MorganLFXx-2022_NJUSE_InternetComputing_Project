@@ -8,7 +8,6 @@
     "root": "pages/home",
     "pages": [
       "menuDetails/index",
-      "addDish/index",
       "editInfo/index"
     ]
   }, {

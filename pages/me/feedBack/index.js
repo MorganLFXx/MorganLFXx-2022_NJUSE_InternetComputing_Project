@@ -4,8 +4,11 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {
-
+    data:{
+      hint: '欢迎在这里畅所欲言，说出你对小程序的需求、意见或建议！',
+      text: '',
+      isEmpty: true,
+      isSubmitted: false,
     },
 
     /**
@@ -13,6 +16,19 @@ Page({
      */
     onLoad(options) {
 
+    },
+
+    inputHandler(e) {
+      this.setData({
+        value: e.detail.value,
+        isEmpty: e.detail.value === '',
+      })
+    },
+
+    submit() {
+      this.setData({
+        isSubmitted: true,
+      })
     },
 
     /**

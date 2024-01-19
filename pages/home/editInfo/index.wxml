@@ -10,5 +10,5 @@
 </view>
 <!--提交按钮-->
 <view>
-  <button disabled="{{!isReady || isSubmit}}" bind:tap="Submit">{{isSubmit ? '已提交' : '确认提交？'}}</button>
+  <button class="sub_btn" disabled="{{!isReady || isSubmit}}" bind:tap="submit">{{isSubmit ? '已提交' : '确认提交？'}}</button>
 </view>

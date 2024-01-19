@@ -1,1 +1,2 @@
 /* pages/order/orderDetails/index.wxss */
+@import "../../form/form.wxss";

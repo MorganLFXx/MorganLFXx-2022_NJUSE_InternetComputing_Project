@@ -1,9 +1,9 @@
 <!--输入框 --ykg-->
 <template name="entry">
-  <input wx:if="{{conditionForDisplay}}" type="text" maxlength="50" class="power_blank" bindinput="inputHandler" data-itemIndex="{{itemIndex}}" placeholder="{{hint}}" value="{{value}}">
+  <input wx:if="{{conditionForDisplay}}" type="text" maxlength="50" class="power_blank" bindinput="inputHandler" data-itemindex="{{itemIndex}}" placeholder="{{hint}}" value="{{value}}">
   </input>
-  <view wx:if="{{isEmpty && !isNecessary}}" class="power_errorMsg">{{alarmIfEmpty}}</view>
-  <view wx:if="{{!isStandard && !isEmpty}}" class="power_errorMsg">{{alarmUnlessStandardized}}</view>
+  <view wx:if="{{isEmpty}}" class="power_errorMsg">{{alarmIfEmpty}}</view>
+  <view wx:if="{{(!isStandard) && (!isEmpty)}}" class="power_errorMsg">{{alarmUnlessStandardized}}</view>
   <view wx:if="{{conditionForDisplay}}" class="horizontal_line"></view>
 </template>
 
@@ -41,9 +41,9 @@
       <view class="preview_area_rightLMR_left"><!--中间部分 不变量-->
         <view class="preview_area_rightLMR_left_text">{{midText}}</view>
       </view>
-      <view wx:if="{{hasBtn}}" class="preview_area_rightLMR_right"><!--右边部分 变量-->
+      <view class="preview_area_rightLMR_right"><!--右边部分 变量-->
         <view class="preview_area_rightLMR_right_text">{{rightText}}</view>
-        <view class="preview_area_rightLMR_right_btns">
+        <view wx:if="{{hasBtn}}" class="preview_area_rightLMR_right_btns">
           <image src="{{leftBtn}}" class="my_btn" data-index="{{index}}" bind:tap="leftBtnHandler"></image>
           <image src="{{rightBtn}}" class="my_btn" data-index="{{index}}" bind:tap="rightBtnHandler"></image>
         </view>
