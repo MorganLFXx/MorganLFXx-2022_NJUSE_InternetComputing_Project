@@ -11,12 +11,8 @@ exports.main = async (event, context) => {
   try {
     const { windowNumber } = event; // 从前端传入的窗口序号
 
-    // 查询数据库中对应窗口的菜单
     const result = await db
-      .collection("menu")
-      .where({
-        windowNumber: windowNumber,
-      })
+      .collection(windowNumber)
       .get();
 
     // 返回成功和查询到的菜单集合
