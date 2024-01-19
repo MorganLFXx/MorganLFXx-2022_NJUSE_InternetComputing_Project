@@ -3,10 +3,6 @@ cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV,
 });
 const db = cloud.database();
-<<<<<<< HEAD
-const currentWindow = db.collection("001001");
-=======
->>>>>>> master
 exports.main = async (event, context) => {
   try {
     const windowNo = event.data.windowNo;

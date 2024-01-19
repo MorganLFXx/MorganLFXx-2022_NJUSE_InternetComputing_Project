@@ -8,17 +8,11 @@ const chefCollection = db.collection("chefs");
 exports.main = async (event, context) => {
   const newChefID = event.data.chefID;
   try {
-<<<<<<< HEAD
-	const res=await chefCollection.where({
-		chefID:newChefID
-	}).get();
-=======
     const res = await chefCollection
       .where({
         chefID: newChefID,
       })
       .get();
->>>>>>> master
     if (res.data.length > 0) {
       console.log("OK!");
       return {
