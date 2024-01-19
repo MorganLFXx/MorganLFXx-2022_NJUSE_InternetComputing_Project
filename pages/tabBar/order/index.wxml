@@ -1,8 +1,7 @@
 <!--订单明细栏，记载的是之前的所有的订单 --ykg-->
-
 <view>
   <import src="../../form/form" />
-  <view wx:for="{{previewLMRs}}" wx:key="midText" wx:for-item="previewLMR">
-    <template is="previewLMR" data="{{...previewLMRs[index]}}" />
+  <view wx:for="{{previewLRs}}" wx:key="rightText" wx:for-item="previewLR">
+    <template is="previewLR" data="{{...previewLRs[index]}}" />
   </view>
 </view>
