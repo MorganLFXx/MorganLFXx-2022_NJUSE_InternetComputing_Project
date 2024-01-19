@@ -8,7 +8,8 @@
     "root": "pages/home",
     "pages": [
       "menuDetails/index",
-      "editInfo/index"
+      "editInfo/index",
+      "score/index"
     ]
   }, {
     "root": "pages/order",

@@ -26,6 +26,7 @@ Page({
     },
 
     submit() {
+      //todo 向后端发送数据
       this.setData({
         isSubmitted: true,
       })

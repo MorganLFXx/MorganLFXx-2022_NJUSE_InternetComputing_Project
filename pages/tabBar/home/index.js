@@ -70,6 +70,7 @@ Page({
     isStandard: false,
     isEmpty: true,
     alarmUnlessFormed: "窗口名应为全中文",
+    userID: "",
   },
 
   /**
@@ -172,6 +173,11 @@ Page({
       for (var i = 0; i < previewLMRs.length; i++) {
         sum += previewLMRs[i].rightText * previewLMRs[i].price;
       }
+      //向后端发送数据
+      console.log(sum)
+      wx.navigateTo({
+        url: `/pages/home/score/index?userID=${this.data.userID}`,
+      })
     }
   },
 
