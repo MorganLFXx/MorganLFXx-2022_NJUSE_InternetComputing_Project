@@ -5,8 +5,8 @@ cloud.init({
 const db = cloud.database;
 exports.main = async (event, context) => {
   try {
-    const { userID, orderNo } = event;
-    const user = db.collection(`orders_${userID}`);
+    const { User_id, orderNo } = event.data;
+    const user = db.collection(`orders_${User_id}`);
     const result = await user
       .where({
         No: orderNo,

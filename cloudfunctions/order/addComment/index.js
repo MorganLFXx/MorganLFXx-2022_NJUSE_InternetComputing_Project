@@ -5,7 +5,7 @@ cloud.init({
 const db = cloud.database;
 exports.main = async (event, context) => {
   try {
-    const { windowNO, dishID, comment, issuingTime } = event;
+    const { windowNO, dishID, comment, time } = event.data;
     const window = db.colletion(windowNO);
     const result = await window
       .where({
@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
       })
       .update({
         data: {
-          comments: _.push({ comment, issuingTime }),
+          comments: _.push({ comment, time }),
         },
       });
     if (result.errcode === 0) {

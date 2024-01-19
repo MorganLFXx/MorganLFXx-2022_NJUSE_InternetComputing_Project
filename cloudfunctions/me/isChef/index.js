@@ -9,7 +9,7 @@ exports.main = async (event, context) => {
 	const {newChefID}=event;
   try {
 	const res=await chefCollection.where({
-		chefID=newChefID
+		chefID:newChefID
 	}).get();
     if (res.data.length > 0) {
       console.log("true")
