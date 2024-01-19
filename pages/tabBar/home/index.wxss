@@ -10,3 +10,18 @@
   font-size: 24rpx;
   color: red;
 }
+
+.hover_btn {
+  margin: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hover_btn_img {
+  background-color: green;
+  color: white;
+  border-radius: 5%;
+  width: 300rpx;
+  height: 100rpx;
+}

@@ -90,3 +90,6 @@ export const ItemType = {
   type: 7,
 }
 
+export var curCampus = 0
+export var curCanteen = 0
+export var curWindow = 0

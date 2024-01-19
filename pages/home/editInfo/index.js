@@ -5,8 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    lastPreview: "",
+    dishID: "",
     lastImg:"",//其url从onLoad函数中载入
+    lastPreview: "",
     isReady:false,
     isSubmit:false,
   },
@@ -15,14 +16,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {//获取从tabBar页面传递过来的图片和简介
-    lastImgUrl = options.lastImgUrl;
-    lastPreviewHash = options.lastPreviewHash;
     //从后端将对应hash值的简介，读取出来
-    var lastPreview;
-    this.setData({
-      lastImg: lastImgUrl,
-      lastPreview: lastPreview,
-    })
+    var id = options.dishID
+    if(id == "1111111111"){//广播地址：新增菜品
+
+    } else {
+      this.setData({
+        dishID: id,//获取dishID
+      })
+      //todo 调用云函数
+    }
   },
 
   /**
