@@ -6,32 +6,34 @@ import {
   Canteen,
   CanteenName,
   Window,
-  WindowName
+  WindowName,
 } from "../../enumerations"
 
-let identity; //于onLoad函数中从后端把身份加载出来
+let curCampus,curCanteen,curWindow
 
 Page({
   data: {
     //previewLMRs: [],//用于存储从后端数据库中加载而来的菜品信息
     //测试数据: conditionForDisplay放于了onLoad函数中，注意，左右按钮的图标机器绑定的函数会随着用户访问的身份不同而发生变化 --ykg
     previewLMRs: [{
+      index: 0,//它在当前数组的下标
       imagePath: "../../../resources/navBar/unselectedHome.png",
-      midText: "测试菜品",
-      rightText: "14￥",
-      hasBtns: true,
+      midText: "测试菜品14￥",
+      rightText: 0,
+      id: "1111111111",
+      hasBtn: true,
       leftBtn: "../../../resources/navBar/unselectedMe.png",
       rightBtn: "../../../resources/navBar/unselectedOrder.png",
-      num: 0,
       conditionForDisplay: true,//会在onLoad判定
     }, {
+      index: 1,
       imagePath: "../../../resources/navBar/unselectedHome.png",
-      midText: "测试菜品",
-      rightText: "14￥",
-      hasBtns: true,
+      midText: "测试菜品14￥",
+      rightText: 0,
+      id: "1111111111",
+      hasBtn: true,
       leftBtn: "../../../resources/navBar/unselectedMe.png",
       rightBtn: "../../../resources/navBar/unselectedOrder.png",
-      num: 0,
       conditionForDisplay: true,
     }],
     pickers: [{
@@ -51,31 +53,43 @@ Page({
     isChef: false,//判断当前用户的身份是否为厨师
     addImg: "",//添加按钮图片的路径
     hint: "当前筛选栏的排列无效",
+    hoverBtnImgPath: "/resources/image/unknown.jpg",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    //加载identity
     console.log(ItemType.campus);
     var pickers = this.data.pickers;
     for(var picker of pickers){
-      picker.value = 0;
       picker.conditionForDisplay = true;
       picker.isReady = false;
     }
+    //todo 调用云函数，获取当前的校区食堂窗口
+    curCampus = 0;
+    curCanteen = 0;
+    curWindow = 0;
+    //
+
+    pickers[0].value = curCampus;
+    pickers[1].value = curCanteen;
+    pickers[2].value = curWindow;
+
     this.setData({
       pickers:pickers,
     });
   },
 
   leftBtnHandler(e) {
-    if (identity) { //厨师身份，进行删除
+    if (this.data.isChef) { //厨师身份，进行删除
 
     } else {
       var dishIndex = parseInt(e.currentTarget.dataset.index);
+      console.log(dishIndex);
       var previewLMRs = this.data.previewLMRs;
-      previewLMRs[dishIndex].num = previewLMRs[dishIndex].num + 1;
+      previewLMRs[dishIndex].rightText = previewLMRs[dishIndex].rightText + 1;
       this.setData({
         previewLMRs: previewLMRs,
       })
@@ -83,12 +97,13 @@ Page({
   },
 
   rightBtnHandler(e) {
-    if (identity) { //厨师身份，进行修改
+    if (this.data.isChef) { //厨师身份，进行修改
 
     } else {
       var dishIndex = parseInt(e.currentTarget.dataset.index);
+      console.log(dishIndex);
       var previewLMRs = this.data.previewLMRs;
-      previewLMRs[dishIndex].num = previewLMRs[dishIndex].num - 1;
+      if(previewLMRs[dishIndex].rightText > 0) previewLMRs[dishIndex].rightText = previewLMRs[dishIndex].rightText - 1;
       this.setData({
         previewLMRs: previewLMRs,
       })
@@ -96,24 +111,37 @@ Page({
   },
 
   async changeHandler(event) {
-    const itemIndex = event.currentTarget.dataset.itemindex;
+    var itemIndex = event.currentTarget.dataset.itemindex;
+    itemIndex -= ItemType.campus
     const value = event.detail.value;
     var pickers = this.data.pickers;
-    pickers[itemIndex - ItemType.campus].value = value;
+    pickers[itemIndex].value = value;
     this.setData({
       pickers: pickers,
     })
+    if(itemIndex == 0) curCampus = value;
+    else if(itemIndex == 1) curCanteen = value;
+    else curWindow = value;
     if((pickers[0].value == 0 && pickers[1].value > 3) || (pickers[0].value == 1 && pickers[1].value <= 3)) {
       const window = pickers[2].value;
       //调用后端载入
       this.setData({
         isRight: true,
       });
+      //调用向后端发送campus canteen window
+    } else {
+      this.setData({
+        isRight:false,
+      })
     }
   },
 
-  tapHandler() {
-    //todo
+  tapHandler(e) {
+    console.log(this.data.isChef)
+    //跳转至菜品详情页面
+    wx.navigateTo({
+      url: `../../home/menuDetails/index?identity=${this.data.isChef}&dishID=${e.currentTarget.dataset.id}`,
+    })//传递身份
   },
 
   toAddDish(){
@@ -121,12 +149,8 @@ Page({
   },
 
   toSettleAccounts() {
-    //todo: 将当前所选择的菜品，发送至后端，包括菜品的数量和在数组中的索引
+    //todo: 将当前所选择的菜品，发送至后端，包括菜品的数量和在数组中的索引还有价格
 
-    //跳转至结算页面
-    wx.redirectTo({
-      url: '../../home/settleAccounts',
-    });
   },
 
   /**

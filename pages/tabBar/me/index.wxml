@@ -8,7 +8,7 @@
       <view class="userblank_right_left_text">{{'身份：' + identity}}</view>
     </view>
     <view class="userblank_right_right">
-      <image class="userblank_right_right_img" src="editBtn" bindtap="toEditInfo"></image>
+      <image class="userblank_right_right_img" src="{{editBtn}}" bindtap="toEditInfo"></image>
     </view><!--修改按钮-->
   </view>
 </view>
