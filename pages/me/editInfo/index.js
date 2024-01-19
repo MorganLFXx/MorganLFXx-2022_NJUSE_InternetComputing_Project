@@ -35,7 +35,7 @@ Page({
         value: 0,
       }],
       isReady: false,
-      isSummitted: false,
+      isSubmitted: false,
     },
 
     inputHandler(e){
@@ -46,7 +46,7 @@ Page({
 
     submit(){
       this.setData({
-        isSummitted: true,
+        isSubmitted: true,
       })
     },
 

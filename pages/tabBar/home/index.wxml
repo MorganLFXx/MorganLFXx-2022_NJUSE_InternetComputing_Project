@@ -9,7 +9,7 @@
 <view wx:if="{{isRight}}"><!--展示栏, 只有当选定校区、食堂、窗口后,才会展示-->
   <view><!--搜索栏-->
     <input class="seek_input" placeholder="请输入您想要搜索的菜品名" bindinput="inputHandler" />
-    <view class="power_errorMsg">{{alarmUnlessFormed}}</view>
+    <view wx:if="{{!isEmpty}}"><view wx:if="{{!isStandard}}" class="power_errorMsg">{{alarmUnlessFormed}}</view></view>
     <view class="horizontal_line"></view>
   </view>
   <import src="../../form/form" />
@@ -17,7 +17,7 @@
   <template is="previewLMR" data="{{...previewLMRs[index]}}" />
   </view> 
 </view>
-<view  class="hint"  wx:else><!--没选定或选择不正确时，会出现提示-->
+<view class="hint" wx:else><!--没选定或选择不正确时，会出现提示-->
   {{hint}}
 </view>
 
