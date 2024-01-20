@@ -24,6 +24,12 @@ Page({
     identity: "1",
     userID: "1",
   },
+  gotofeedback:function(){
+    wx.navigateTo({
+      url: '/pages/me/feedBack/index'
+    })
+  }
+  ,
 
   navigateHandler(e) {
     var id = parseInt(e.currentTarget.dataset.id);

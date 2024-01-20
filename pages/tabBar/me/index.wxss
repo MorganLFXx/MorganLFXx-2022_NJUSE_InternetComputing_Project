@@ -1,4 +1,16 @@
 /* pages/tabBar/me/index.wxss */
+<<<<<<< HEAD
+.blank{
+  width: 100vw;
+  height: 10vw;
+}
+.userblank{
+  position: relative;
+  background-color: rgb(250,250,250);
+  background: linear-gradient(rgb(147,90,245),white);
+  width: 100vw;
+  height: 50vw;
+=======
 @import "../../form/form.wxss";
 .userblank {
   height: 200rpx;
@@ -7,6 +19,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+>>>>>>> a24a24fd0a6fa537ea2b44ba63385781e02f9034
 }
 
 .userblank_left {
@@ -14,19 +27,98 @@
   display: flex;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
+  font-size: 5vw;
+  font-weight: bold;
+}
+.userblank_left{
+  width: 40vw;
+  height: 30vw;
+  position: absolute;
+}
+.userblank_left_image{
+  position: absolute;
+  top: 1vw;
+  left: 11vw;
+  width: 20vw;
+  height: 20vw;
+}
+.userblank_right{
+  position: absolute;
+  width: 60vw;
+  height: 30vw;
+  top: 23vw;
+  left: 38vw;
+}
+.userblank_right_left_nickname{
+  width: 50vw;
+  position: absolute;
+  font-weight: bold;
+}
+.userblank_right_left_identity{
+  position: absolute;
+  font-weight: bold;
+  width: 50vw;
+  top: 10vw;
+=======
+>>>>>>> a24a24fd0a6fa537ea2b44ba63385781e02f9034
 }
 
 .userblank_left_image {
   width: 150rpx;
   height: 150rpx;
 }
+<<<<<<< HEAD
+.feedback{
+  width: 100vw;
+  height: 20vw;
+  display: flex;
+  margin: -2px 0 0 -2px;
+  max-height: 150px;
+}
+.feedback_img{
+  position: relative;
+  width: 20vw;
+  height: 20vw;
+  left: 4vw;
+}
+.feedback_text{
+  width: 80vw;
+  height: 20vw;
+  text-indent: 29vw;
+  font-size:9vw;
+  font-weight: 540;
+  justify-content: center;
+=======
 
 .userblank_right {
   width: 70%;
   display: flex;
   justify-content: space-between;
+>>>>>>> a24a24fd0a6fa537ea2b44ba63385781e02f9034
   align-items: center;
 }
+<<<<<<< HEAD
+.version{
+  width: 100vw;
+  height: 20vw;
+  display: flex;
+  margin: -2px 0 0 -2px;
+  max-height: 150px;
+}
+.version_img{
+  position: relative;
+  width: 20vw;
+  height: 20vw;
+  left: 4vw;
+}
+.version_text{
+  width: 80vw;
+  height: 20vw;
+  text-indent: 29vw;
+  font-size:9vw;
+  font-weight: 540;
+=======
 
 .userblank_right_left {
   width: 60%;
@@ -39,6 +131,7 @@
 .userblank_right_right {
   width: 40%;
   display: flex;
+>>>>>>> a24a24fd0a6fa537ea2b44ba63385781e02f9034
   justify-content: center;
   align-items: center;
 }

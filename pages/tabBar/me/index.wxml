@@ -1,4 +1,9 @@
 <view class="userblank">
+<<<<<<< HEAD
+  <view class="blank"></view>
+  <view class="top_screen"></view>
+=======
+>>>>>>> a24a24fd0a6fa537ea2b44ba63385781e02f9034
   <view class="userblank_left">
     <image class="userblank_left_image" src="{{portraitSrc}}"></image><!--头像区-->
   </view>
@@ -12,8 +17,23 @@
     </view><!--修改按钮-->
   </view>
 </view>
+<<<<<<< HEAD
+<view style="height: 10vw;"></view>
+
+<view class="feedback">
+<image src="/resources/image/feedback.jpg" mode="aspectFill" class="feedback_img"/>
+<view class="feedback_text" bind:tap="gotofeedback">
+  <view>意见反馈</view>
+</view>
+</view>
+<view class="version">
+  <image src="/resources/image/version.jpg" mode="aspectFill" class="version_img"/>
+  <view class="version_text">版本信息</view>
+</view>
+=======
 
 
+>>>>>>> a24a24fd0a6fa537ea2b44ba63385781e02f9034
 <!--选项栏-->
 <view>
   <import src="../../form/form" />

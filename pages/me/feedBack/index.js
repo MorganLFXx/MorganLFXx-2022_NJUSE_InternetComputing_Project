@@ -1,3 +1,5 @@
+const { View } = require("XrFrame/kanata/lib/index");
+
 // pages/me/feedBack/index.js
 Page({
 
