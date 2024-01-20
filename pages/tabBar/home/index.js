@@ -36,7 +36,7 @@ Page({
       midText: "测试菜品14￥",
       price: 14,
       rightText: 0,
-      id: "1111111111",
+      id: "0000000001",
       hasBtn: true,
       conditionForDisplay: true, //会在onLoad判定
     }, {
@@ -45,7 +45,7 @@ Page({
       midText: "试菜品14￥",
       price: 14,
       rightText: 0,
-      id: "1111111111",
+      id: "0000000002",
       hasBtn: true,
       conditionForDisplay: true,
     }],

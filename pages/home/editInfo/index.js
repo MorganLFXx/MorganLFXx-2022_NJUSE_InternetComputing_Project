@@ -25,6 +25,18 @@ Page({
         lastImg: lastImgStoragePath,
       })
     } else {
+      wx.cloud.callFunction({
+        name: "home",
+        type: "showDishDetail",
+        dishID: id
+      }).then((res)=>{
+        console.log(res)
+        var src = res.result;
+        this.setData({
+          lastPreview: src.dishDetail.Description,
+          lastImg: src.dishDetail.Picture_path,
+        })
+      })
       this.setData({
         dishID: id,//获取dishID
       })

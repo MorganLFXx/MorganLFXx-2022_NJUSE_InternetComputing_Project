@@ -1,4 +1,3 @@
-const { View } = require("XrFrame/kanata/lib/index");
 
 // pages/me/feedBack/index.js
 Page({
@@ -11,6 +10,7 @@ Page({
       text: '',
       isEmpty: true,
       isSubmitted: false,
+      value: "",
     },
 
     /**
@@ -29,6 +29,13 @@ Page({
 
     submit() {
       //todo 向后端发送数据
+      wx.cloud.callFunction({
+        name: "me",
+        type: "sendFeedback",
+        feedbackContent: this.data.value,
+      }).then((res)=>{
+        console.log(res)
+      })
       this.setData({
         isSubmitted: true,
       })

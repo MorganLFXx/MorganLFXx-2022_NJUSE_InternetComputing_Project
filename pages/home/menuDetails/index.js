@@ -22,11 +22,16 @@ Page({
     },
 
     deleteHandler() {
-      //向后端发送要删除的菜单编号
-      // wx.cloud.callFunction({
-      //   name: "home",
-      //   type: "deleteDish",
-      // })
+      //向后端发送要删除的菜品编号
+      wx.cloud.callFunction({
+        name: "home",
+        type: "deleteDish_Chef",
+        ID: this.data.dishID,
+      }).then((res)=>{
+        console.log(res)
+      }).catch((err)=>{
+        console.error(err)
+      })
     },
 
     editHandler(){
