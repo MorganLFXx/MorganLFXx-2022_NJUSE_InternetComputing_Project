@@ -4,7 +4,7 @@
   <view wx:for="{{entries}}" wx:key="hint" wx:for-item="entry">
     <template is="entry" data="{{...entries[index]}}" />
   </view>
-  <view wx:for="{{pickers}}" wx:key="hint" wx:for-item="picker">
+  <view wx:if="{{isRegister}}" wx:for="{{pickers}}" wx:key="hint" wx:for-item="picker">
     <template is="picker" data="{{...pickers[index]}}" />
   </view>
 </view>
