@@ -12,10 +12,19 @@ exports.main = async (event, context) => {
         openID: OPENID,
       })
       .get();
-    return {
-      nickname: result.data[0].nickname,
-      User_id: result.data[0].User_id,
-    };
+    if (result.data.length !== 0) {
+	  console.log(result.data[0].nickname);
+	  console.log(result.data[0].User_id);
+      return {
+        nickname: result.data[0].nickname,
+        User_id: result.data[0].User_id,
+      };
+    } else {
+      return {
+        nickname: "null",
+        User_id: "999999",
+      };
+    }
   } catch (e) {
     return {
       User_id: "999999",

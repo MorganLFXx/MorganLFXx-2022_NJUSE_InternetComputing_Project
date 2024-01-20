@@ -9,7 +9,7 @@ const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
   try {
-    const { windowNumber } = event.data; // 从前端传入的窗口序号
+    const { windowNumber } = event; // 从前端传入的窗口序号
 
     const result = await db.collection(windowNumber).get();
 
