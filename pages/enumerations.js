@@ -1,5 +1,8 @@
 //存放的是一些常用的枚举变量 --ykg
-export const StoragePath = ""//用于存放未来的云端的存储路径 --ykg
+export const studentLeftBtnStoragePath = "../../../resources/navBar/unselectedMe.png"//用于存放未来的云端的存储路径 --ykg
+export const studentRightBtnStoragePath = "../../../resources/navBar/unselectedOrder.png"
+export const chefLeftBtnStoragePath = "../../../resources/navBar/selectedOrder.png"
+export const chefRightBtnStoragePath = "../../../resources/navBar/selectedOrder.png"
 export const lastImgStoragePath = "../resources/image/unknown.jpg"
 
 export const UserType = {

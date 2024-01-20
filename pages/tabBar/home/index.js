@@ -7,6 +7,10 @@ import {
   CanteenName,
   Window,
   WindowName,
+  studentLeftBtnStoragePath,
+  studentRightBtnStoragePath,
+  chefLeftBtnStoragePath,
+  chefRightBtnStoragePath,
 } from "../../enumerations"
 
 let curCampus, curCanteen, curWindow
@@ -34,8 +38,6 @@ Page({
       rightText: 0,
       id: "1111111111",
       hasBtn: true,
-      leftBtn: "../../../resources/navBar/unselectedMe.png",
-      rightBtn: "../../../resources/navBar/unselectedOrder.png",
       conditionForDisplay: true, //会在onLoad判定
     }, {
       index: 1,
@@ -45,8 +47,6 @@ Page({
       rightText: 0,
       id: "1111111111",
       hasBtn: true,
-      leftBtn: "../../../resources/navBar/unselectedMe.png",
-      rightBtn: "../../../resources/navBar/unselectedOrder.png",
       conditionForDisplay: true,
     }],
     pickers: [{
@@ -71,19 +71,73 @@ Page({
     isEmpty: true,
     alarmUnlessFormed: "窗口名应为全中文",
     userID: "",
+    nickname: "",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    wx.cloud.init();
+    wx.getUserInfo({
+      success: function (res) {
+        console.log(res.userInfo); // 用户信息在 res.userInfo 中
+      },
+      fail: function (res) {
+        console.log("用户拒绝授权");
+      }
+    });
+
     //加载identity
+    var identity = false;
+    var leftBtnPath = "";
+    var rightBtnPath = "";
+    wx.cloud.callFunction({
+      name: "me",
+      type: "matchAccount",
+    }).then((res)=> {
+      console.log(res)
+      const userID = res.User_id;
+      const nickname = res.nickname;
+      console.log(userID);
+      if(userID === "999999"){
+        wx.navigateTo({
+          url: `/pages/me/editInfo/index?identity=${this.data.identity}&nickname=${this.data.nickname}&isRegister=${false}`,
+        })
+      } else {
+        if(userID.startsWith("888")) {
+          identity = true;
+          leftBtnPath = chefLeftBtnStoragePath;
+          rightBtnPath = chefRightBtnStoragePath;
+        } else {
+          leftBtnPath = studentLeftBtnStoragePath;
+          rightBtnPath = studentRightBtnStoragePath;
+        }
+        this.setData({
+          userID: userID,
+          nickname: nickname,
+          isChef: identity,
+        })
+
+      }
+    })
+
     var pickers = this.data.pickers;
+    var previewLMRs = this.data.previewLMRs;
+    //todo
+    leftBtnPath = studentLeftBtnStoragePath;
+    rightBtnPath = studentRightBtnStoragePath;
+    //
+    console.log(leftBtnPath)
+    console.log(rightBtnPath)
     for (var picker of pickers) {
       picker.conditionForDisplay = true;
       picker.isReady = false;
     }
-    //todo 调用云函数，获取当前的校区食堂窗口
+    for(var previewLMR of previewLMRs){
+      previewLMR.leftBtn = leftBtnPath;
+      previewLMR.rightBtn = rightBtnPath;
+    }
     curCampus = 0;
     curCanteen = 0;
     curWindow = 0;
@@ -95,6 +149,7 @@ Page({
 
     this.setData({
       pickers: pickers,
+      previewLMRs: previewLMRs,
     });
   },
 
@@ -140,7 +195,30 @@ Page({
     else curWindow = value;
     if ((pickers[0].value == 0 && pickers[1].value > 3) || (pickers[0].value == 1 && pickers[1].value <= 3)) {
       const window = pickers[2].value;
-      //调用后端载入
+      const windowNo = this.expand(curCanteen + "") + this.expand(window + "");
+      console.log(windowNo)
+      wx.cloud.callFunction({
+        name: "home",
+        type: "showMenuInTheWindow",
+        windowNumber: windowNo,
+      }).then((res)=>{
+        console.log(res)
+        var previewLMRs = this.data.previewLMRs;
+        var menu = res.result;
+        for(var i = 0;menu.length;i++){
+          console.log(i)
+          previewLMRs[i].index = i;
+          previewLMRs[i].midText = menu[i].Name + menu[i].price;
+          previewLMRs[i].rightText = 0;
+          previewLMRs[i].id = menu[i].ID;
+          previewLMRs[i].hasBtn = true;
+          previewLMRs[i].conditionForDisplay = true;
+          previewLMRs[i].imagePath = menu[i].Picture_Path;
+        }
+        this.setData({
+          previewLMRs: previewLMRs,
+        })
+      })
       this.setData({
         isRight: true,
       });
@@ -207,6 +285,11 @@ Page({
       }
       this.setData({previewLMRs: previewLMRs})
     }
+  },
+
+  expand(src){
+    while(src.length < 3) src = "0" + src;
+    return src
   },
 
   /**

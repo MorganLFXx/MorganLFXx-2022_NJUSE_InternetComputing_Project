@@ -65,5 +65,12 @@
   },
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "mp-weixin": {
+    "permission": {
+      "scope.userLocation": {
+        "desc": "本小程序属于非商用程序，信息的收集遵守《中华人民共和国个人信息保护法》。"
+      }
+    }
+  }
 }

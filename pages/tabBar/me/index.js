@@ -48,7 +48,7 @@ Page({
   toEditInfo() {
     //跳转至编辑页面
     wx.navigateTo({
-      url: `../../me/editInfo/index?identity=${this.data.identity}&nickname=${this.data.identity}`,//需要传递一个身份参数
+      url: `../../me/editInfo/index?identity=${this.data.identity}&nickname=${this.data.nickname}&isRegister=${false}`,//需要传递一个身份参数
     })
   },
 
