@@ -5,7 +5,8 @@
 }
 .userblank{
   position: relative;
-  background-color: rgb( 147, 90, 246);
+  background-color: rgb(250,250,250);
+  background: linear-gradient(rgb(147,90,245),white);
   width: 100vw;
   height: 50vw;
 }
@@ -26,7 +27,7 @@
 .userblank_left_image{
   position: absolute;
   top: 1vw;
-  left: 12vw;
+  left: 11vw;
   width: 20vw;
   height: 20vw;
 }
@@ -35,7 +36,7 @@
   width: 60vw;
   height: 30vw;
   top: 23vw;
-  left: 39vw;
+  left: 38vw;
 }
 .userblank_right_left_nickname{
   width: 50vw;
@@ -58,21 +59,22 @@
 .feedback{
   width: 100vw;
   height: 20vw;
-  border:2px solid black;
   display: flex;
   margin: -2px 0 0 -2px;
   max-height: 150px;
 }
 .feedback_img{
+  position: relative;
   width: 20vw;
   height: 20vw;
+  left: 4vw;
 }
 .feedback_text{
   width: 80vw;
   height: 20vw;
-  text-indent: 35vw;
+  text-indent: 29vw;
   font-size:9vw;
-  font-weight: bold;
+  font-weight: 540;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -80,21 +82,22 @@
 .version{
   width: 100vw;
   height: 20vw;
-  border:2px solid black;
   display: flex;
   margin: -2px 0 0 -2px;
   max-height: 150px;
 }
 .version_img{
+  position: relative;
   width: 20vw;
   height: 20vw;
+  left: 4vw;
 }
 .version_text{
   width: 80vw;
   height: 20vw;
-  text-indent: 35vw;
+  text-indent: 29vw;
   font-size:9vw;
-  font-weight: bold;
+  font-weight: 540;
   justify-content: center;
   align-items: center;
   display: flex;

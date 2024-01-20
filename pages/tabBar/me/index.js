@@ -15,6 +15,12 @@ Page({
       page: "feedBack",
     }],
   },
+  gotofeedback:function(){
+    wx.navigateTo({
+      url: '/pages/me/feedBack/index'
+    })
+  }
+  ,
 
   tapHandler(e) {
     eventIndex = parseInt(e.currentTarget.dataset.index);
