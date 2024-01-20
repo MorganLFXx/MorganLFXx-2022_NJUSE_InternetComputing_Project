@@ -1,14 +1,9 @@
-<!--记录的是某一指定订单的菜品详情-->
-<!--菜品明细栏-->
-<view class="all_dishes">
+<!--pages/order/orderDetails/index.wxml-->
+<view><!--展示栏, 只有当选定校区、食堂、窗口后,才会展示-->
   <import src="../../form/form" />
-  <view wx:for="{{previewLMRs}}" wx:key="midText" wx:for-item="preivewLMR">
-    <template is="previewLMR" data="{{...previewLMRs[index]}}" />
-  </view>
+  <view wx:for="{{previewLMRs}}" wx:key="imagePath" wx:for-item="previewLMR">
+  <template is="previewLMR" data="{{...previewLMRs[index]}}" />
+  </view> 
 </view>
-<!--删除按钮栏-->
-<view>
-  <button disabled="{{isDeleted}}" class="delete_btn" bind:tap="deleteHandler">
-    {{isDeleted ? '已删除' : '确认删除'}}
-  </button>
-</view>
+
+

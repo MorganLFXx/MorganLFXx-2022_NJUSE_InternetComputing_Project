@@ -1,51 +1,31 @@
 /* pages/tabBar/home/index.wxss */
-view.top_screen{
-  height: 200;
-  width: 100;
-  color:"#023E8A";
-  background-color: aqua;
+@import "../../form/form.wxss";
+.top_screen {
+  background-color: rgb(255, 255, 255);
 }
-.dish_panel{
-  width: 100vw;
-  height: 30vw ;
-  border:2px solid black;
+
+.hint{
   display: flex;
-  margin: -2px 0 0 -2px;
-  max-height: 150px;
+  justify-content: center;
+  font-size: 24rpx;
+  color: red;
 }
-.dish_panel image{
-  width: 30vw;
-  height: 30vw;
+
+.hover_btn {
+  margin: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.dish_describe{
-  width: 67vw;
-  display: block;
-  flex-direction: column;
-  justify-content: flex-start;
-  position: relative;
-  margin: 0 0 0 3vw;
+
+.hover_btn_img {
+  background-color: green;
+  color: white;
+  border-radius: 5%;
+  width: 300rpx;
+  height: 100rpx;
 }
-.dish_name{
-  position: absolute;
-  top: 3vw;
-  font-size: 6vw;
-  font-weight: bold
-}
-.dish_price{
-  font-size: 6vw;
-  font-weight: bold;
-  position: absolute;
-  top: 20vw;
-}
-.dish_buy{
-  width: 20vw;
-  height: 7vw;
-  background-color: rgb(255, 115, 0);
-  border-radius: 12px;
-  font-size: 5vw;
-  position: absolute;
-  top: 20vw;
-  left:43vw ;
-  text-indent:0px;
-  text-align:center;
+
+.seek_input {
+  margin-left: 30rpx;
 }

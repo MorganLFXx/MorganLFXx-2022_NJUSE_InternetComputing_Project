@@ -12,13 +12,15 @@
 
 .pick_area {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-top: 5rpx;
   margin-bottom: 5rpx;
+  margin-right: 10%;
 }
 
 .pick_area_label{
-  color: darkgrey;
+  color: darkgray;
   margin-left: 30rpx;
 }
 
@@ -37,47 +39,54 @@
 }
 
 .preview_area {
-  width:100%;
+  width:95%;
   padding: 10rpx;
   background-color: white;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 300rpx;
+  height: 200rpx;
   box-sizing: border-box;
+  margin: 2.5%;
+  border: 1rpx solid darkgray;
 }
 
 .preview_area_left {
   width: 25%;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .preview_area_left_img {
   border-radius: 50%;
-  width: 150rpx;
-  height: 150rpx;
+  width: 100rpx;
+  height: 100rpx;
 }
 
 .preview_area_rightLR {
   width:75%;
   padding: 5rpx;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 .preview_area_rightLR_text {
-  font-size: 24rpx;
-  font-weight: 500;
+  font-size: 36rpx;
+  font-weight: 600;
 }
 
 .preview_area_rightLMR {
   width:75%;
   padding: 5rpx;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .preview_area_rightLMR_left {
-  width: 25%;
+  width: 60%;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -88,13 +97,14 @@
 }
 
 .preview_area_rightLMR_right {
-  width: 75%;
+  width: 40%;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .preview_area_rightLMR_right_text {
-  width: 25%;
+  width: 15%;
   justify-content: center;
   align-items: center;
   font-size: 24rpx;
@@ -102,7 +112,8 @@
 }
 
 .preview_area_rightLMR_right_btns {
-  width: 75%;
+  width: 85%;
+  display: flex;
   justify-content: space-around;
   align-items: center;
 }
@@ -110,4 +121,10 @@
 .my_btn {
   height: 100rpx;
   width: 100rpx;
+}
+
+.power_info_less {
+  margin-left: 90rpx;
+  width: 50rpx;
+  height: 50rpx;
 }

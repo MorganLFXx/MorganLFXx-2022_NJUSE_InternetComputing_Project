@@ -1,9 +1,9 @@
 <!--输入框 --ykg-->
 <template name="entry">
-  <input wx:if="{{conditionForDisplay}}" type="text" maxlength="50" class="power_blank" bindinput="inputHandler" data-itemIndex="{{itemIndex}}" placeholder="{{hint}}" value="{{value}}">
+  <input wx:if="{{conditionForDisplay}}" type="text" maxlength="50" class="power_blank" bindinput="inputHandler" data-itemindex="{{itemIndex}}" placeholder="{{hint}}" value="{{value}}">
   </input>
-  <view wx:if="{{isEmpty && !isNecessary}}" class="power_errorMsg">{{alarmIfEmpty}}</view>
-  <view wx:if="{{!isStandard && !isEmpty}}" class="power_errorMsg">{{alarmUnlessStandardized}}</view>
+  <view wx:if="{{isEmpty}}" class="power_errorMsg">{{alarmIfEmpty}}</view>
+  <view wx:if="{{(!isStandard) && (!isEmpty)}}" class="power_errorMsg">{{alarmUnlessStandardized}}</view>
   <view wx:if="{{conditionForDisplay}}" class="horizontal_line"></view>
 </template>
 
@@ -11,7 +11,7 @@
 <template name="picker">
   <view wx:if="{{conditionForDisplay}}" class="pick_area">
     <view class="pick_area_label">{{hint}}</view>
-    <picker mode="selector" range="{{selections}}" value="{{value}}" data-itemIndex="{{itemIndex}}" bindchange="changeHandler">
+    <picker mode="selector" range="{{selections}}" value="{{value}}" data-itemindex="{{itemIndex}}" bindchange="changeHandler">
       <view class="pick_area_picker">{{selections[value]}}</view>
     </picker>
   </view>
@@ -20,12 +20,13 @@
 
 <!--“左右式”的展示框 --ykg-->
 <template name="previewLR">
-  <view wx:if="{{conditionForDisplay}}" class="preview_area" bindtap="tapHandler" data-index="{{index}}">
-    <view class="preview_area_left">
+  <view wx:if="{{conditionForDisplay}}" class="preview_area"  data-index="{{index}}">
+    <view class="preview_area_left" bindtap="tapHandler">
       <image class="preview_area_left_img" src="{{imagePath}}"></image>
     </view>
     <view class="preview_area_rightLR">
       <view class="preview_area_rightLR_text">{{rightText}}</view>
+      <image class="power_info_less" data-id="{{id}}" bindtap="navigateHandler" src="/resources/image/arrow.svg"></image>
     </view>
   </view>
 </template>
@@ -34,17 +35,17 @@
 <template name="previewLMR">
   <view wx:if="{{conditionForDisplay}}" class="preview_area">
     <view class="preview_area_left">
-      <image class="preview_area_left_img" bindtap="tapHandler" src="{{imagePath}}"></image>
+      <image class="preview_area_left_img" data-id="{{id}}" bindtap="tapHandler" src="{{imagePath}}"></image>
     </view>
     <view class="preview_area_rightLMR">
-      <view class="preview_area_rightLMR_left"><!--中间部分-->
+      <view class="preview_area_rightLMR_left"><!--中间部分 不变量-->
         <view class="preview_area_rightLMR_left_text">{{midText}}</view>
       </view>
-      <view class="preview_area_rightLMR_right"><!--右边部分-->
+      <view class="preview_area_rightLMR_right"><!--右边部分 变量-->
         <view class="preview_area_rightLMR_right_text">{{rightText}}</view>
-        <view wx:if="{{hasBtns}}" class="preview_area_rightLMR_right_btns">
-          <image src="{{leftBtn}}" class="my_btn" data-index="{{index}}" bindtap="leftBtnHandler"></image>
-          <image src="{{rightBtn}}" class="my_btn" data-index="{{index}}" bindtap="rightBtnHandler"></image>
+        <view wx:if="{{hasBtn}}" class="preview_area_rightLMR_right_btns">
+          <image src="{{leftBtn}}" class="my_btn" data-index="{{index}}" bind:tap="leftBtnHandler"></image>
+          <image src="{{rightBtn}}" class="my_btn" data-index="{{index}}" bind:tap="rightBtnHandler"></image>
         </view>
       </view>
     </view>

@@ -10,5 +10,5 @@
 </view>
 <!--提交按钮-->
 <view class="edit_area_submit">
-  <button disabled="{{!isReady || isSubmitted}}" class="edit_area_submit_btn" bindtap="submit">{{isSubmitted ? "已提交" : "确认提交"}}</button>
+  <button class="edit_area_submit_btn"  disabled="{{isSubmitted || !isReady}}" bindtap="submit">{{isSubmitted ? '已提交' : '确认提交'}}</button>
 </view>

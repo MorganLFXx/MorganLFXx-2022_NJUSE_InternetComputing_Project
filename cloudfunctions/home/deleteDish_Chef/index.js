@@ -3,23 +3,24 @@ cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV,
 });
 const db = cloud.database();
-const currentWindow = db.collection("001001");
 exports.main = async (event, context) => {
-  const { dishID } = event;
   try {
+    const windowNo = event.data.ID.substring(0, 6);
+    const currentWindow = db.collection(windowNo);
     errcode = await currentWindow
       .where({
-        ID: dishID,
+        ID: event.data.ID,
       })
       .remove();
+    return {
+      success: errcode.stats,
+      msg: errcode.errMsg,
+    };
   } catch (e) {
     console.error(e);
     return {
       success: false,
       e,
     };
-  }
-  return {
-	  success:!errcode
   }
 };

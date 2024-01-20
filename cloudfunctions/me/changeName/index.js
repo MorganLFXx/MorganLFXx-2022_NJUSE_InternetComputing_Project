@@ -9,15 +9,15 @@ const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
   try {
-    const { userId, newNickname } = event;
+    const { User_id, nickname } = event.data;
 
     // 更新用户昵称
     const result = await db
       .collection("users")
-      .doc(userId)
+      .doc(User_id)
       .update({
         data: {
-          nickname: newNickname,
+          nickname: nickname,
         },
       });
 

@@ -1,1 +1,8 @@
-/* pages/me/editInfo/index.wxss */
+@import "../../form//form.wxss";
+.edit_area_submit_btn {
+  margin: 100rpx;
+  width: 100rpx;
+  height: 100rpx;
+  background-color: green;
+  color: white;
+}

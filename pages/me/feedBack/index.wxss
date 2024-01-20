@@ -1,47 +1,19 @@
 /* pages/me/feedBack/index.wxss */
-.blank{
-  width: 100vw;
-  height: 10vw;
-  background-color: rgb( 147, 90, 246);
+.feedBackArea{
+  width: 90%;
+  margin: 5%;
+  height:700rpx;
 }
-.top_screen{
-  width: 100vw;
-  height: 10vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 5vw;
-  font-weight: bold;
-  background-color: rgb( 147, 90, 246);
+
+.horizontal_line {
+  margin-left: 5%;
+  width: 90%;
+  border-bottom: 1px solid #ccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-.text{
-  text-indent: 3vw;
-  margin: 1vw;
-}
-.opinion_text{
-  width: 94vw;
-  height: 40vw;
-  border: 2px solid rgb(187, 177, 177);
-  margin: -2px 0 0 -2px;
-  padding: 3vw;
-  background-color: rgb(224, 233, 236);
-}
-.opinion_communication{
-  width: 100vw;
-  height: 6vw;
-  border: 2px solid rgb(187, 177, 177);
-  margin: -2px 0 0 -2px;
-  padding: 3vw;
-  background-color: rgb(224, 233, 236);
-}
-.feedback_btn{
-  background-color: rgb(87, 191, 106);
-  position: relative;
-  top: 40vw;
-  width: 30vw;
-  height: 10vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+.sum_btn {
+  background-color: green;
   color: white;
 }

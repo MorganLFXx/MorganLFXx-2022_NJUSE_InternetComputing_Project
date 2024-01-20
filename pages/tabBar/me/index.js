@@ -6,14 +6,23 @@ Page({
    */
   data: {
     previewLRs:[{
-      imagePath: "",//到时候用云存储的路径，节省主包空间
-      rightText: "",
-      page: "",
+      id:0,
+      imagePath: "../../../resources/image/edit.png",//到时候用云存储的路径，节省主包空间
+      rightText: "意见反馈",
+      page: "editInfo",
+      conditionForDisplay: true,
     }, {
-      imagePath: "",
-      rightText: "",
+      id:1,
+      imagePath: "../../../resources/image/edit.png",
+      rightText: "版本信息",
       page: "feedBack",
+      conditionForDisplay: true,
     }],
+    portraitSrc: "../../../resources/image/unknown.jpg",
+    editBtn: "/resources/navBar/unselectedHome.png",
+    nickname: "1",
+    identity: "1",
+    userID: "1",
   },
   gotofeedback:function(){
     wx.navigateTo({
@@ -22,17 +31,30 @@ Page({
   }
   ,
 
-  tapHandler(e) {
-    eventIndex = parseInt(e.currentTarget.dataset.index);
-    switch(eventIndex){
+  navigateHandler(e) {
+    var id = parseInt(e.currentTarget.dataset.id);
+    switch(id){
       //todo:根据不同的页面索引进行不同的操作
+      case 0:
+        wx.navigateTo({
+          url: `/pages/me/feedBack/index?userID=${this.data.userID}`,
+        })
+        break;
+      case 1:
+        wx.showToast({
+          title: '当前版本1.1.0',
+          icon: 'none',
+          mask:true,
+          duration: 2000,
+        })
+      break;
     }
   },
 
   toEditInfo() {
     //跳转至编辑页面
     wx.navigateTo({
-      url: `../../me/feedBack/index?identity=$`,//需要传递一个身份参数
+      url: `../../me/editInfo/index?identity=${this.data.identity}&nickname=${this.data.identity}`,//需要传递一个身份参数
     })
   },
 
@@ -40,7 +62,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    console.log(2);
   },
 
   /**

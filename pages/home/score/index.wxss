@@ -1,0 +1,12 @@
+/* pages/home/score/index.wxss */
+@import "../../form//form.wxss";
+.feedBackArea{
+  width: 90%;
+  margin: 5%;
+  height:700rpx;
+}
+
+.sum_btn {
+  background-color: green;
+  color: white;
+}
