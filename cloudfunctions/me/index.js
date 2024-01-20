@@ -1,6 +1,7 @@
 const changeName = require("./changeName/index");
 const sendFeedback = require("./sendFeedback/index");
-const isChef = require("./isChef/index");
+const matchAccount = require("./matchAccount/index");
+const addAccount = require("./addAccount/index");
 // 云函数入口文件
 const cloud = require("wx-server-sdk");
 
@@ -13,7 +14,9 @@ exports.main = async (event, context) => {
       return await changeName.main(event, context);
     case "sendFeedback":
       return await sendFeedback.main(event, context);
-    case "isChef":
-      return await isChef.main(event, context);
+    case "addAccount":
+      return await addAccount.main(event, context);
+    case "matchAccount":
+      return await matchAccount.main(event, context);
   }
 };
