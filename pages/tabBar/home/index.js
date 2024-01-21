@@ -13,8 +13,12 @@ import {
   chefRightBtnStoragePath,
 } from "../../enumerations"
 
-let curCampus, curCanteen, curWindow
+let curCampus = 0,
+  curCanteen = 0,
+  curWindow = 0,
+  curWindowNo = "000000"
 let checkUserInfo
+let leftBtnPath, rightBtnPath
 
 require('../../util',
   (module) => {
@@ -30,25 +34,27 @@ Page({
   data: {
     //previewLMRs: [],//用于存储从后端数据库中加载而来的菜品信息
     //测试数据: conditionForDisplay放于了onLoad函数中，注意，左右按钮的图标机器绑定的函数会随着用户访问的身份不同而发生变化 --ykg
-    previewLMRs: [{
-      index: 0, //它在当前数组的下标
-      imagePath: "../../../resources/navBar/unselectedHome.png",
-      midText: "测试菜品14￥",
-      price: 14,
-      rightText: 0,
-      id: "0000000001",
-      hasBtn: true,
-      conditionForDisplay: true, //会在onLoad判定
-    }, {
-      index: 1,
-      imagePath: "../../../resources/navBar/unselectedHome.png",
-      midText: "试菜品14￥",
-      price: 14,
-      rightText: 0,
-      id: "0000000002",
-      hasBtn: true,
-      conditionForDisplay: true,
-    }],
+    previewLMRs: [
+      //   {
+      //   index: 0, //它在当前数组的下标
+      //   imagePath: "../../../resources/navBar/unselectedHome.png",
+      //   midText: "测试菜品14￥",
+      //   price: 14,
+      //   rightText: 0,
+      //   id: "0000000001",
+      //   hasBtn: true,
+      //   conditionForDisplay: true, //会在onLoad判定
+      // }, {
+      //   index: 1,
+      //   imagePath: "../../../resources/navBar/unselectedHome.png",
+      //   midText: "试菜品14￥",
+      //   price: 14,
+      //   rightText: 0,
+      //   id: "0000000002",
+      //   hasBtn: true,
+      //   conditionForDisplay: true,
+      // }
+    ],
     pickers: [{
       itemIndex: ItemType.campus, //判断是筛选什么 --ykg，于changeHandler中调用
       hint: "校区筛选",
@@ -79,33 +85,26 @@ Page({
    */
   onLoad(options) {
     wx.cloud.init();
-    wx.getUserInfo({
-      success: function (res) {
-        console.log(res.userInfo); // 用户信息在 res.userInfo 中
-      },
-      fail: function (res) {
-        console.log("用户拒绝授权");
-      }
-    });
 
-    //加载identity
     var identity = false;
-    var leftBtnPath = "";
-    var rightBtnPath = "";
+    //加载identity
     wx.cloud.callFunction({
       name: "me",
-      type: "matchAccount",
-    }).then((res)=> {
+      data: {
+        type: "matchAccount",
+      }
+    }).then((res) => {
       console.log(res)
-      const userID = res.User_id;
-      const nickname = res.nickname;
+      const userID = res.result.User_id;
+      const nickname = res.result.nickname;
       console.log(userID);
-      if(userID === "999999"){
-        wx.navigateTo({
-          url: `/pages/me/editInfo/index?identity=${this.data.identity}&nickname=${this.data.nickname}&isRegister=${false}`,
+      console.log(nickname)
+      if (userID === "999999") {
+        wx.redirectTo({
+          url: `/pages/me/editInfo/index?isRegister=${true}`,
         })
       } else {
-        if(userID.startsWith("888")) {
+        if (userID.startsWith("888")) {
           identity = true;
           leftBtnPath = chefLeftBtnStoragePath;
           rightBtnPath = chefRightBtnStoragePath;
@@ -118,25 +117,13 @@ Page({
           nickname: nickname,
           isChef: identity,
         })
-
       }
     })
 
     var pickers = this.data.pickers;
-    var previewLMRs = this.data.previewLMRs;
-    //todo
-    leftBtnPath = studentLeftBtnStoragePath;
-    rightBtnPath = studentRightBtnStoragePath;
-    //
-    console.log(leftBtnPath)
-    console.log(rightBtnPath)
     for (var picker of pickers) {
       picker.conditionForDisplay = true;
       picker.isReady = false;
-    }
-    for(var previewLMR of previewLMRs){
-      previewLMR.leftBtn = leftBtnPath;
-      previewLMR.rightBtn = rightBtnPath;
     }
     curCampus = 0;
     curCanteen = 0;
@@ -149,13 +136,22 @@ Page({
 
     this.setData({
       pickers: pickers,
-      previewLMRs: previewLMRs,
     });
   },
 
   leftBtnHandler(e) {
     if (this.data.isChef) { //厨师身份，进行删除
-
+      const id = e.currentTarget.dataset.id;
+      console.log(id)
+      wx.cloud.callFunction({
+        name: "home",
+        data: {
+          type: "deleteDish_Chef",
+          ID: id
+        },
+      }).then((res) => {
+        console.log(res)
+      })
     } else {
       var dishIndex = parseInt(e.currentTarget.dataset.index);
       console.log(dishIndex);
@@ -169,7 +165,9 @@ Page({
 
   rightBtnHandler(e) {
     if (this.data.isChef) { //厨师身份，进行修改
-
+      wx.navigateTo({
+        url: `/pages/home/editInfo/index?dishID=${e.currentTarget.dataset.id}`,
+      })
     } else {
       var dishIndex = parseInt(e.currentTarget.dataset.index);
       console.log(dishIndex);
@@ -195,25 +193,41 @@ Page({
     else curWindow = value;
     if ((pickers[0].value == 0 && pickers[1].value > 3) || (pickers[0].value == 1 && pickers[1].value <= 3)) {
       const window = pickers[2].value;
-      const windowNo = this.expand(curCanteen + "") + this.expand(window + "");
+      const windowNo = this.expand(curCanteen + "", 3) + this.expand(window + "", 3);
+      curWindow = window;
+      curWindowNo = windowNo;
       console.log(windowNo)
       wx.cloud.callFunction({
         name: "home",
-        type: "showMenuInTheWindow",
-        windowNumber: windowNo,
-      }).then((res)=>{
+        data: {
+          type: "showMenuInTheWindow",
+          windowNumber: windowNo, //todo: windowNo
+        },
+      }).then((res) => {
         console.log(res)
         var previewLMRs = this.data.previewLMRs;
-        var menu = res.result;
-        for(var i = 0;menu.length;i++){
-          console.log(i)
-          previewLMRs[i].index = i;
-          previewLMRs[i].midText = menu[i].Name + menu[i].price;
-          previewLMRs[i].rightText = 0;
-          previewLMRs[i].id = menu[i].ID;
-          previewLMRs[i].hasBtn = true;
-          previewLMRs[i].conditionForDisplay = true;
-          previewLMRs[i].imagePath = menu[i].Picture_Path;
+        previewLMRs = [];
+        if (res.result.success == false) {
+
+        } else {
+          var menu = res.result.menu;
+          for (var i = 0; i < menu.length; i++) {
+            let newPre = {
+              index: i,
+              midText: menu[i].Name + " ￥" + menu[i].Price,
+              rightText: 0,
+              name: menu[i].Name,
+              price: menu[i].Price,
+              id: menu[i].ID,
+              hasBtn: true,
+              conditionForDisplay: true,
+              imagePath: menu[i].Picture_path,
+              leftBtn: leftBtnPath,
+              rightBtn: rightBtnPath,
+            };
+            console.log(newPre)
+            previewLMRs.push(newPre);
+          }
         }
         this.setData({
           previewLMRs: previewLMRs,
@@ -234,7 +248,7 @@ Page({
     console.log(this.data.isChef)
     //跳转至菜品详情页面
     wx.navigateTo({
-      url: `../../home/menuDetails/index?identity=${this.data.isChef}&dishID=${e.currentTarget.dataset.id}`,
+      url: `../../home/menuDetails/index?dishID=${e.currentTarget.dataset.id}`,
     }) //传递身份
   },
 
@@ -242,8 +256,16 @@ Page({
     //todo: 将当前所选择的菜品，发送至后端，包括菜品的数量和在数组中的索引还有价格
     //厨师视角：进行添加菜品
     if (this.data.isChef) {
+      var newID;
+      if (this.data.previewLMRs.length > 0) {
+        newID = this.data.previewLMRs[this.data.previewLMRs.length - 1].id;
+        var tmp = parseInt(newID.substring(newID.length - 4)) + 1;
+        newID = curWindowNo + this.expand(tmp + "", 4);
+      } else {
+        newID = curWindowNo + this.expand("1", 4);
+      }
       wx.navigateTo({
-        url: `/pages/home/editInfo/index?dishID=1111111111`, //全一广播地址
+        url: `/pages/home/editInfo/index?dishID=${newID}`, //全一广播地址
       })
     } else {
       const previewLMRs = this.data.previewLMRs;
@@ -253,8 +275,41 @@ Page({
       }
       //向后端发送数据
       console.log(sum)
+      let dishes = []
+      const timeInfo = new Date();
+      for(var i = 0;i<previewLMRs.length;i++){
+        if(previewLMRs[i].rightText > 0){
+          let aDish = {
+            ID: previewLMRs[i].id,
+            Price: previewLMRs[i].price,
+            Num: previewLMRs[i].rightText,
+            Name: previewLMRs[i].name,
+          };
+          dishes.push(aDish);
+        }
+      }
+      var orderID;
+      console.log("s bef")
+      wx.cloud.callFunction({
+        name: "order",
+        data: {
+          type: "settleOrder",
+          Dishes: dishes,
+          Status: true,
+          Time: timeInfo,
+          Total_price: sum,
+          User_id: this.data.userID,
+          User_name: this.data.nickname,
+          windowNo: curWindowNo,
+        }
+      }).then((res)=>{
+        console.log("s mid")
+        console.log(res);
+        orderID = res.result.id;
+      })
+      console.log("s aft")
       wx.navigateTo({
-        url: `/pages/home/score/index?userID=${this.data.userID}`,
+        url: `/pages/home/score/index?userID=${this.data.userID}&windowNo=${curWindowNo}&orderID=${orderID}`,
       })
     }
   },
@@ -265,10 +320,10 @@ Page({
     var isEmpty = value.trim() === '';
     var previewLMRs = this.data.previewLMRs;
     if (isFormed) {
-      for(var i = 0;i<previewLMRs.length;i++){
-        if(previewLMRs[i].midText.startsWith(value)){
+      for (var i = 0; i < previewLMRs.length; i++) {
+        if (previewLMRs[i].midText.startsWith(value)) {
           previewLMRs[i].conditionForDisplay = true;
-        }  else {
+        } else {
           previewLMRs[i].conditionForDisplay = false;
         }
       }
@@ -277,18 +332,20 @@ Page({
         isStandard: isFormed,
         isEmpty: isEmpty,
       })
-    } 
-    if(isEmpty || !isFormed) {
+    }
+    if (isEmpty || !isFormed) {
       console.log(1)
-      for(var i = 0;i<previewLMRs.length;i++){
+      for (var i = 0; i < previewLMRs.length; i++) {
         previewLMRs[i].conditionForDisplay = true;
       }
-      this.setData({previewLMRs: previewLMRs})
+      this.setData({
+        previewLMRs: previewLMRs
+      })
     }
   },
 
-  expand(src){
-    while(src.length < 3) src = "0" + src;
+  expand(src, len) {
+    while (src.length < len) src = "0" + src;
     return src
   },
 

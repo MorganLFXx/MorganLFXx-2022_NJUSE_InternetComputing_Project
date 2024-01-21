@@ -1,5 +1,12 @@
 /* pages/home/editInfo/index.wxss */
-
+@import "../../form/form.wxss";
 .edit_area_textarea {
   margin: 5%;
+}
+
+.sub_btn {
+  display: flex;
+  justify-content: center;
+  background-color: green;
+  color: white;
 }

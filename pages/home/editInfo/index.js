@@ -1,5 +1,18 @@
 // pages/home/editInfo/index.js
-import {lastImgStoragePath} from "../../enumerations.js";
+import {
+  lastImgStoragePath,
+  ItemType,
+} from "../../enumerations.js";
+let handleInput;
+
+require('../../util',
+  (module) => {
+    handleInput = module.handleInput
+  },
+  (err) => {
+    console.error(err)
+  }
+)
 
 Page({
 
@@ -8,42 +21,155 @@ Page({
    */
   data: {
     dishID: "",
-    lastImg:"",//其url从onLoad函数中载入
+    lastImg: "", //其url从onLoad函数中载入
     lastPreview: "",
-    isReady:false,
-    isSubmit:false,
+    entries: [{
+      conditionForDisplay: true,
+      hint: "菜品名称",
+      isEmpty: true,
+      isStandard: true,
+      itemIndex: 0,
+      alarmIfEmpty: '请输入菜品名',
+      alarmUnlessStandardized: '菜品名称应为纯中文',
+      isReady: false,
+      value: "",
+    }, {
+      conditionForDisplay: true,
+      hint: "价格",
+      isEmpty: true,
+      isStandard: true,
+      itemIndex: 1,
+      alarmIfEmpty: '请输入价格',
+      alarmUnlessStandardized: '价格应为纯数字',
+      isReady: false,
+      value: "",
+    }],
+    isPreviewReady: false,
+    isReady: false,
+    isSubmit: false,
+    value: "",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {//获取从tabBar页面传递过来的图片和简介
+  onLoad(options) { //获取从tabBar页面传递过来的图片和简介
     //从后端将对应hash值的简介，读取出来
     var id = options.dishID
-    if(id == "1111111111"){//广播地址：新增菜品
-      this.setData({
-        lastImg: lastImgStoragePath,
-      })
-    } else {
-      wx.cloud.callFunction({
-        name: "home",
+    console.log(id);
+    wx.cloud.callFunction({
+      name: "home",
+      data: {
         type: "showDishDetail",
         dishID: id
-      }).then((res)=>{
-        console.log(res)
-        var src = res.result;
+      },
+    }).then((res) => {
+      console.log(res)
+      var src = res.result;
+      if (src.success===false || src.dishDetail.length === 0) {
         this.setData({
-          lastPreview: src.dishDetail.Description,
-          lastImg: src.dishDetail.Picture_path,
+          lastImg: lastImgStoragePath,
+          lastPreview: "无",
         })
-      })
-      this.setData({
-        dishID: id,//获取dishID
-      })
-      //todo 调用云函数
-    }
+      } else {
+        var entries = this.data.entries;
+        entries[0].hint = src.dishDetail[0].Name;
+        entries[0].value = src.dishDetail[0].Name;
+        entries[0].isReady = true;
+        entries[0].isStandard = true;
+        entries[0].isEmpty = false;
+        entries[1].hint = src.dishDetail[0].Price;
+        entries[1].value = src.dishDetail[0].Price;
+        entries[1].isReady = true;
+        entries[1].isStandard = true;
+        entries[1].isEmpty = false;
+        this.setData({
+          lastPreview: src.dishDetail[0].Description,
+          lastImg: src.dishDetail[0].Picture_path,
+          entries: entries
+        })
+      }
+    })
+    this.setData({
+      dishID: id, //获取dishID
+    })
   },
 
+  inputHandler(e) {
+    console.log("editInfo Input handle")
+    handleInput(e, this)
+    var entries = this.data.entries;
+    const index = e.currentTarget.dataset.itemindex;
+    if (entries[index].isStandard && !entries[index].isEmpty) {
+      entries[index].isReady = true;
+    } else {
+      entries[index].isReady = false;
+    }
+    var flag = this.data.isPreviewReady;
+
+    for (var i = 0; i < entries.length; i++) {
+      flag &= entries[i].isReady;
+    }
+    flag = flag === 0 ? false : true;
+    console.log(flag)
+    this.setData({
+      entries: entries,
+      isReady: flag,
+    })
+  },
+
+  inputHandler2(e) {
+    const value = e.detail.value;
+    var f = false
+    if (value.trim() !== '') {
+      f = true;
+    }
+    var entries = this.data.entries;
+    var flag = f;
+    console.log(flag)
+    for (var i = 0; i < entries.length; i++) {
+      console.log(entries[i].isReady);
+      flag &= entries[i].isReady;
+    }
+    console.log(flag)
+    this.setData({
+      isReady: flag,
+      value: e.detail.value,
+      isPreviewReady: f,
+    })
+  },
+
+  submit() {
+    //todo 向后端发送数据
+    console.log(this.data.dishID.substring(0, this.data.dishID.length - 4))
+    let newDish = {
+      Description: this.data.lastPreview,
+      ID: this.data.dishID,
+      Name: this.data.entries[0].value,
+      Picture_path: this.data.lastImg,
+      Price: this.data.entries[1].value,
+    };
+    console.log(newDish)
+    wx.cloud
+      .callFunction({
+        name: "home",
+        data: {
+          type: "changeDish_Chef",
+          windowNo: this.data.dishID.substring(0, this.data.dishID.length - 4),
+          dish:newDish
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        wx.showToast({
+          title: res.result.msg,
+          icon: "success",
+        })
+      });
+    this.setData({
+      isSubmitted: true,
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -44,8 +44,8 @@
       <view class="preview_area_rightLMR_right"><!--右边部分 变量-->
         <view class="preview_area_rightLMR_right_text">{{rightText}}</view>
         <view wx:if="{{hasBtn}}" class="preview_area_rightLMR_right_btns">
-          <image src="{{leftBtn}}" class="my_btn" data-index="{{index}}" bind:tap="leftBtnHandler"></image>
-          <image src="{{rightBtn}}" class="my_btn" data-index="{{index}}" bind:tap="rightBtnHandler"></image>
+          <image src="{{leftBtn}}" class="my_btn" data-index="{{index}}" data-id="{{id}}" bind:tap="leftBtnHandler"></image>
+          <image src="{{rightBtn}}" class="my_btn" data-index="{{index}}" data-id="{{id}}" bind:tap="rightBtnHandler"></image>
         </view>
       </view>
     </view>

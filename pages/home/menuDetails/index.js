@@ -1,42 +1,58 @@
 // pages/home/menuDetails/index.js
 Page({
 
-    /**
-     * 页面的初始数据
-     */
-    data: {
-      isChef: false,
-      dishID: "11111111111",
-    },
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    dishID: "",
+    lastImg: "", //其url从onLoad函数中载入
+    lastPreview: "",
+    name: "",
+    score: 0,
+    comments: [],
+  },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad(options) {
-      console.log(options.identity)
-      console.log(options.dishID)
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) { //获取从tabBar页面传递过来的图片和简介
+    //从后端将对应hash值的简介，读取出来
+    var id = options.dishID
+    if (id == "1111111111") { //广播地址：新增菜品
       this.setData({
-        isChef: options.identity,
-        dishID: options.dishID,
+        lastImg: lastImgStoragePath,
       })
-    },
-
-    deleteHandler() {
-      //向后端发送要删除的菜品编号
+    } else {
       wx.cloud.callFunction({
         name: "home",
-        type: "deleteDish_Chef",
-        ID: this.data.dishID,
-      }).then((res)=>{
+        data: {
+          type: "showDishDetail",
+          dishID: id
+        },
+      }).then((res) => {
         console.log(res)
-      }).catch((err)=>{
-        console.error(err)
+        var src = res.result;
+        var sum = 0;
+        if (src.dishDetail[0].Scores.length > 0) {
+          for (var i = 0; i < src.dishDetail[0].Scores.length; i++) sum += src.dishDetail[0].Scores[i]
+          sum /= src.dishDetail[0].Scores.length;
+        }
+        if(sum === 0) sum = "无"
+        this.setData({
+          lastPreview: src.dishDetail[0].Description,
+          lastImg: src.dishDetail[0].Picture_path,
+          name: src.dishDetail[0].Name,
+          score: sum,
+          comments: src.dishDetail[0].comments,        
+        })
       })
-    },
+      this.setData({
+        dishID: id, //获取dishID
+      })
+      //todo 调用云函数
+    }
+  },
 
-    editHandler(){
-      wx.navigateTo({
-        url: `/pages/home/editInfo/index?dishID=${this.data.dishID}`,//传输一个dishID去编辑页面
-      })
-    },
+
 })

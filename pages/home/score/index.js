@@ -8,7 +8,6 @@ Page({
     hint: '欢迎在这里畅所欲言，说出你对该菜品的意见或建议！',
     text: '',
     isEmpty: true,
-    isNumEmpty: true,
     isStandard: false,
     isSubmitted: false,
     pickers: [{
@@ -19,14 +18,20 @@ Page({
       conditionForDisplay: true,
     }],
     userID: "", //从onLoad获取
+    value: "",
+    windowNo: "",
+    orderID: "",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    console.log(options)
     this.setData({
       userID: options.userID,
+      windowNo: options.windowNo,
+      orderID: options.orderID,
     })
   },
 
@@ -47,7 +52,46 @@ Page({
   },
 
   submit() {
-    //todo 向后端发送数据
+    var order;
+    wx.cloud.callFunction({
+      name: "order",
+      data: {
+        type: "inquireSpecificOrders",
+        orderNo: this.data.orderID, 
+      }
+    }).then((res)=>{
+      console.log(res);
+      order = res.result.order;
+    })
+    const dishes = order.Dishes;
+    const timeInfo = new Date();
+    console.log(this.data.pickers[0].value)
+    console.log(this.data.value)
+    for(var i = 0;i<dishes.length;i++){
+      wx.cloud.callFunction({
+        name: "order",
+        data:{
+          type: "updateScore",
+          windowNo: this.data.windowNo,
+          dishID: dishes[i].ID,
+          score: this.data.pickers[0].value,
+        }
+      }).then((res)=>{
+        console.log(res)
+      })
+      wx.cloud.callFunction({
+        name: "order",
+        data: {
+          type: "addComment",
+          windowNo: this.data.windowNo,
+          dishID: dishes[i].ID,
+          comment: this.data.value,
+          issuingTime: timeInfo,
+        }
+      }).then((res)=>{
+        console.log(res);
+      })
+    }
     this.setData({
       isSubmitted: true,
     })

@@ -46,8 +46,23 @@ Page({
     },
 
     submit(){
+      const isChef = this.data.pickers[0].value === 0;
+      console.log(isChef)
+      wx.cloud.callFunction({
+        name: "me",
+        data: {
+          type: "addAccount",
+          isChef: isChef,
+        },
+      }).then((res)=>{
+        console.log(res)
+        console.log(res.result.User_id)
+      })
       this.setData({
         isSubmitted: true,
+      })
+      wx.navigateTo({
+        url: `/pages/tabBar/home/index`,
       })
     },
 
@@ -65,7 +80,7 @@ Page({
      */
     onLoad(options) {
       this.setData({
-        isRegister: false,
+        isRegister: options.isRegister,
       })
     },
 

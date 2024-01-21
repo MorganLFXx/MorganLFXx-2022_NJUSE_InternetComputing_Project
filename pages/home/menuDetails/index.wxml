@@ -1,10 +1,10 @@
 <view>
-  <image src="../../../resources/image/edit.png" mode="aspectFill" class="picture_preview_img"/>
-  <view class="text_preview_name">名字</view>
-  <view class="text_preview_score">虎扑评分</view>
-  <view class="text_preview_text">食物描述</view>
+  <image src="{{lastImg}}" mode="aspectFill" class="picture_preview_img"/>
+  <view class="text_preview_name">{{name}}</view>
+  <view class="text_preview_score">虎扑评分： {{score}}</view>
+  <view class="text_preview_text">{{lastPreview}}</view>
+  <view class="comment" wx:for="{{comments}}" wx:for-item="content">
+    {{content}}
+  </view>
 </view>
-<view wx:if="{{isChef}}" class="edit_btns"><!--todo: 等会改成!isChef-->
-  <view class="edit_btns_block"><button class="edit_btns_block_delete" bindtap="deleteHandler">删除</button></view>
-  <view class="edit_btns_block"><button class="edit_btns_block_edit" bindtap="editHandler">编辑</button></view>
-</view>
+
