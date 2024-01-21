@@ -1,6 +1,5 @@
 // 云函数入口文件
 const cloud = require("wx-server-sdk");
-const { renderEnv } = require("XrFrame/kanata/lib/index");
 cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV,
 });
@@ -19,19 +18,20 @@ exports.main = async (event, context) => {
       Status,
       Time,
     } = event;
-    var No = User_id + windowNo;
-    const collection = db.collection(`orders_${User_id}`);
-    const orders = collection.data;
-    const length = orders.length;
+    const collection = await db.collection(`orders_${User_id}`).get(); //获取对应用户的订单集合
+    const orders = collection.data; //获取集合中的数据（即几条记录组成的数组）
+    const length = orders.length; //有几条记录
+    //根据记录数量生成新的后三位顺序号
     var randomNo = parseInt(length);
     randowNo++;
     var randomNoStr = randomNo.toString();
     randomNoStr = "0000" + randomNoStr;
     const idLength = randomNoStr.length;
     randowNoStr = randomNoStr.substring(idLength - 3, idLength);
-    No += randomNoStr;
+    //生成No
+    var No = User_id + windowNo + randomNoStr;
     // 将订单信息存入以用户ID为名称的集合中
-    const result = await collection.add({
+    const result = await db.collection(`orders_${User_id}`).add({
       data: {
         Total_price,
         User_id,
