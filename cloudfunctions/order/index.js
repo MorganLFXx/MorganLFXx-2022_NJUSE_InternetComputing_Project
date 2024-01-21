@@ -27,5 +27,7 @@ exports.main = async (event, context) => {
       return await ensure.main(event, context);
     case "updateScore":
       return await updateScore.main(event, context);
+    default:
+      return "there is something wrong!";
   }
 };

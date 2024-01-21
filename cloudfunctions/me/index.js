@@ -18,5 +18,7 @@ exports.main = async (event, context) => {
       return await addAccount.main(event, context);
     case "matchAccount":
       return await matchAccount.main(event, context);
+    default:
+      return "there is something wrong!";
   }
 };

@@ -19,6 +19,7 @@ exports.main = async (event, context) => {
       return await changeDish_Chef.main(event, context);
     case "deleteDish_Chef":
       return await deleteDish_Chef.main(event, context);
-
+    default:
+      return "there is something wrong!";
   }
 };
