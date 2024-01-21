@@ -4,9 +4,14 @@
   <image src="{{lastImg}}" bind:tap="changeImg"></image>
 </view>
 
+<import src="../../form/form" />
+<view wx:for="{{entries}}" wx:key="hint" wx:for-item="entry">
+  <template is="entry" data="{{...entries[index]}}" />
+</view>
+
 <!--修改菜品介绍-->
 <view class="edit_area_textarea">
-  <textarea data-itemindex="" class="edit_area_textarea_blank" model:value="" maxlength="500" placeholder="{{lastPreview}}" bindinput="inputHandler" />
+  <textarea data-itemindex="" class="edit_area_textarea_blank" model:value="" maxlength="500" placeholder="{{lastPreview}}" bindinput="inputHandler2" />
 </view>
 <!--提交按钮-->
 <view>

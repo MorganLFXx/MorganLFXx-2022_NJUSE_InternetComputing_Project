@@ -1,26 +1,28 @@
 //用于存放一些常用的函数 --ykg
 
-import { ItemType } from "../pages/enumerations";
+import {
+  ItemType
+} from "../pages/enumerations";
 
 export async function handleInput(event, page) {
-    const itemIndex = parseInt(event.currentTarget.dataset.itemindex)
-    const value = event.detail.value
-    var entries = page.data.entries
-    entries[itemIndex].value = value
-    entries[itemIndex].isEmpty = value.trim() === ""
-    entries[itemIndex].isStandard = checkUserInfoLegality(value, itemIndex)
-    await iterateLegality(page, itemIndex).then((res) => {
-      page.setData({
-        entries: entries,
-        isReady: res,
-      })
+  const itemIndex = parseInt(event.currentTarget.dataset.itemindex)
+  const value = event.detail.value
+  var entries = page.data.entries
+  entries[itemIndex].value = value
+  entries[itemIndex].isEmpty = value.trim() === ""
+  entries[itemIndex].isStandard = checkUserInfoLegality(value, itemIndex)
+  await iterateLegality(page, itemIndex).then((res) => {
+    page.setData({
+      entries: entries,
+      isReady: res,
     })
+  })
 }
 
 export async function iterateLegality(page, itemIndex) {
   const entries = page.data.entries
   var list = []
-  switch(itemIndex) {
+  switch (itemIndex) {
     case ItemType.name:
       list.push(entries[ItemType.name].isStandard);
       break;
@@ -41,8 +43,10 @@ export function checkUserInfoLegality(value, itemType) {
     case ItemType.name:
     case ItemType.window:
       reg = /^[\u4e00-\u9fa5]+$/
-      break
+      break;
+    case ItemType.bill:
+      reg = /^[1-9]\d*$/
+      break;
   }
   return reg.exec(value) !== null
 }
-

@@ -35,6 +35,10 @@ Page({
       })
       .then((res) => {
         console.log(res);
+        wx.showToast({
+          title: res.result.msg,
+          icon: "success",
+        })
       });
     this.setData({
       isSubmitted: true,

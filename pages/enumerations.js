@@ -3,7 +3,7 @@ export const studentLeftBtnStoragePath = "../../../resources/navBar/unselectedMe
 export const studentRightBtnStoragePath = "../../../resources/navBar/unselectedOrder.png"
 export const chefLeftBtnStoragePath = "../../../resources/navBar/selectedOrder.png"
 export const chefRightBtnStoragePath = "../../../resources/navBar/selectedOrder.png"
-export const lastImgStoragePath = "../resources/image/unknown.jpg"
+export const lastImgStoragePath = "/resources/image/unknown.jpg"
 
 export const UserType = {
   '学生': 0,
@@ -85,10 +85,10 @@ export const WindowName = {
 
 export const ItemType = {
   name: 0,
-  campus: 1,//校区
-  canteen: 2,//食堂
-  window: 3,//窗口
-  timeInfo: 4,
+  bill: 1,
+  campus: 2,//校区
+  canteen: 3,//食堂
+  window: 4,//窗口
   brief: 5,
   status: 6,//菜品的烹饪状态
   type: 7,

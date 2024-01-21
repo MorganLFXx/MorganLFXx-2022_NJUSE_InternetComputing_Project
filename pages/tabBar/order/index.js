@@ -22,6 +22,8 @@ Page({
       conditionForDisplay: true,
       status: "",//标记状态
     }],
+    isChef: false,
+    userID: "",
   },
 
   /**

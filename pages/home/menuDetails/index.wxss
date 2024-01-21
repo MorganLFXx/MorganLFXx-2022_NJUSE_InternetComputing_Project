@@ -20,28 +20,7 @@
   padding-left: 5vw;
 }
 
-.edit_btns {
-  width: 100%;
-  padding: 10rpx;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
 
-.edit_btns_block {
-  width: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.edit_btns_block_delete {
-  background-color: red;
-}
-
-.edit_btns_block_edit {
-  background-color: green;
-  color: white;
-}
 
 
