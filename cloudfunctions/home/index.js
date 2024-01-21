@@ -1,7 +1,7 @@
 const showMenuInTheWindow = require("./showMenuInTheWindow/index");
 const showDishDetail = require("./showDishDetail/index");
-const changeDish = require("./changeDish_Chef/index");
-const deleteDish = require("./deleteDish_Chef/index");
+const changeDish_Chef = require("./changeDish_Chef/index");
+const deleteDish_Chef = require("./deleteDish_Chef/index");
 
 // 云函数入口文件
 const cloud = require("wx-server-sdk");
