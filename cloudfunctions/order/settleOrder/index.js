@@ -9,7 +9,7 @@ const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
   try {
-    const { Total_price, User_id, User_name, Dishs, No, Status, Time } = event;
+    const { Total_price, User_id, User_name, Dishes, No, Status, Time } = event;
 
     // 将订单信息存入以用户ID为名称的集合中
     const result = await db.collection(`orders_${User_id}`).add({
@@ -17,7 +17,7 @@ exports.main = async (event, context) => {
         Total_price,
         User_id,
         User_name,
-        Dishs,
+        Dishes,
         No,
         Status,
         Time,
