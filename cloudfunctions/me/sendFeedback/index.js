@@ -22,7 +22,7 @@ exports.main = async (event, context) => {
     // 返回成功
     return {
       success: true,
-      data: result,
+      msg:"提交成功！",
     };
   } catch (error) {
     // 返回失败
