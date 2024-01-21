@@ -9,7 +9,7 @@ const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
   try {
-    const { User_id } = event.data;
+    const { User_id } = event;
 
     // 查询对应用户ID的订单数据
     const orders = await db.collection(`orders_${User_id}`).get();

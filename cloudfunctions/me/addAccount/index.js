@@ -5,7 +5,7 @@ cloud.init({
 const db = cloud.database();
 exports.main = async (event, context) => {
   try {
-    const isChef = event.data.isChef;
+    const isChef = event.isChef;
     let { OPENID, APPID, UNIONID } = cloud.getWXContext();
     const collection = await db.collection("users").get();
     const users = collection.data;

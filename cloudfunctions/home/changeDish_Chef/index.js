@@ -5,9 +5,9 @@ cloud.init({
 const db = cloud.database();
 exports.main = async (event, context) => {
   try {
-    const windowNo = event.data.windowNo;
+    const windowNo = event.windowNo;
     const currentWindow = db.collection(windowNo);
-    const dish = event.data.dish;
+    const dish = event.dish;
     await currentWindow.add({
       data: {
         Description: dish.Description,

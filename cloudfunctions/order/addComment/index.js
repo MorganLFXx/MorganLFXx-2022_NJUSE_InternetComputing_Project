@@ -6,7 +6,7 @@ const db = cloud.database();
 const _ = db.command;
 exports.main = async (event, context) => {
   try {
-    const { windowNO, dishID, comment, issuingTime } = event.data;
+    const { windowNO, dishID, comment, issuingTime } = event;
     const window = db.collection(windowNO);
     const result = await window
       .where({

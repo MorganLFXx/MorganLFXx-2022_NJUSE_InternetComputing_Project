@@ -11,7 +11,7 @@ exports.main = async (event, context) => {
     const _ = db.command;
     const result = await window
       .where({
-        ID: event.data.ID,
+        ID: event.ID,
       })
       .update({
         data: {
