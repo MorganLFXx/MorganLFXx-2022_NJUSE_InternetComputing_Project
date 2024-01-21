@@ -9,7 +9,7 @@ exports.main = async (event, context) => {
     const currentWindow = db.collection(windowNo);
     errcode = await currentWindow
       .where({
-        ID: event.data.ID,
+        ID: event.ID,
       })
       .remove();
     return {

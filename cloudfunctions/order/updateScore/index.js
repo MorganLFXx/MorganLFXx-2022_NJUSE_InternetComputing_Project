@@ -5,7 +5,7 @@ cloud.init({
 const db = cloud.database();
 exports.main = async (event, context) => {
   try {
-    const windowNo = event.data.windowNo;
+    const windowNo = event.windowNo;
     const window = db.collection(windowNo);
     //update
     const _ = db.command;
@@ -28,7 +28,7 @@ exports.main = async (event, context) => {
     //return new average
     const dish = await window
       .where({
-        ID: event.data.ID,
+        ID: event.ID,
       })
       .get();
     const array = dish.data[0].Scores;
