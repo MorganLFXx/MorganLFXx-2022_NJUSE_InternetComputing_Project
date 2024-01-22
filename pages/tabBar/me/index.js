@@ -20,8 +20,8 @@ Page({
     }],
     portraitSrc: "../../../resources/image/unknown.jpg",
     editBtn: "/resources/navBar/unselectedHome.png",
-    nickname: "1",
-    identity: "1",
+    nickname: "",
+    identity: "",
     userID: "1",
   },
   gotofeedback:function(){
@@ -62,7 +62,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(2);
+    wx.cloud.callFunction({
+      name: "me",
+      data: {
+        type: "matchAccount",
+      }
+    }).then((res)=>{
+      console.log(res);
+      const userID = res.result.User_id;
+      var identity = ""
+      if(userID.startsWith("888")) identity = "厨师"
+      else identity = "学生"
+      this.setData({
+        userID: userID,
+        nickname: res.result.nickname,
+        identity: identity,
+      })
+    })
   },
 
   /**

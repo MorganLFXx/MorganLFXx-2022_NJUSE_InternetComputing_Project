@@ -4,7 +4,8 @@
   <view class="text_preview_score">虎扑评分： {{score}}</view>
   <view class="text_preview_text">{{lastPreview}}</view>
   <view class="comment" wx:for="{{comments}}" wx:for-item="content">
-    {{content}}
+    <view class="comment_time"><text style="font-style: italic;margin: 10rpx;">{{content.time}}</text></view>
+    <view class="comment_connent"><text style="margin: 10rpx;font-weight: 600;">{{content.content}}</text></view>
   </view>
 </view>
 

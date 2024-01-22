@@ -62,38 +62,39 @@ Page({
     }).then((res)=>{
       console.log(res);
       order = res.result.order;
-    })
-    const dishes = order.Dishes;
-    const timeInfo = new Date();
-    console.log(this.data.pickers[0].value)
-    console.log(this.data.value)
-    for(var i = 0;i<dishes.length;i++){
-      wx.cloud.callFunction({
-        name: "order",
-        data:{
-          type: "updateScore",
-          windowNo: this.data.windowNo,
-          dishID: dishes[i].ID,
-          score: this.data.pickers[0].value,
-        }
-      }).then((res)=>{
-        console.log(res)
+      const dishes = order.Dishes;
+      const timeInfo = new Date();
+      for(var i = 0;i<dishes.length;i++){
+        wx.cloud.callFunction({
+          name: "order",
+          data:{
+            type: "updateScore",
+            windowNo: this.data.windowNo,
+            dishID: dishes[i].ID,
+            score: this.data.pickers[0].selections[this.data.pickers[0].value],
+          }
+        }).then((res)=>{
+          console.log(res)
+        })
+      }
+      for(var i = 0;i<dishes.length;i++){
+        wx.cloud.callFunction({
+          name: "order",
+          data: {
+            type: "addComment",
+            windowNO: this.data.windowNo,
+            dishID: dishes[i].ID,
+            comment: this.data.value,
+            time: timeInfo,
+          }
+        }).then((res)=>{
+          // console.log(res);
+          console.log(12324)
+        })
+      }
+      this.setData({
+        isSubmitted: true,
       })
-      wx.cloud.callFunction({
-        name: "order",
-        data: {
-          type: "addComment",
-          windowNo: this.data.windowNo,
-          dishID: dishes[i].ID,
-          comment: this.data.value,
-          issuingTime: timeInfo,
-        }
-      }).then((res)=>{
-        console.log(res);
-      })
-    }
-    this.setData({
-      isSubmitted: true,
     })
   },
 

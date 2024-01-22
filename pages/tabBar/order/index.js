@@ -30,7 +30,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(3);
+    var userID;
+    wx.cloud.callFunction({
+      name: "me",
+      data: {
+        type: "matchAccount",
+      }
+    }).then((res)=>{
+      userID = res.result.User_id
+    })
   },
 
   tapHandler(e){//单击删除

@@ -252,7 +252,7 @@ Page({
     }) //传递身份
   },
 
-  toSettleAccounts() {
+  async toSettleAccounts() {
     //todo: 将当前所选择的菜品，发送至后端，包括菜品的数量和在数组中的索引还有价格
     //厨师视角：进行添加菜品
     if (this.data.isChef) {
@@ -295,7 +295,7 @@ Page({
         data: {
           type: "settleOrder",
           Dishes: dishes,
-          Status: true,
+          Status: false,
           Time: timeInfo,
           Total_price: sum,
           User_id: this.data.userID,
@@ -305,12 +305,13 @@ Page({
       }).then((res)=>{
         console.log("s mid")
         console.log(res);
-        orderID = res.result.id;
+        orderID = res.result.No;
+        wx.navigateTo({
+          url: `/pages/home/score/index?userID=${this.data.userID}&windowNo=${curWindowNo}&orderID=${orderID}`,
+        })
       })
       console.log("s aft")
-      wx.navigateTo({
-        url: `/pages/home/score/index?userID=${this.data.userID}&windowNo=${curWindowNo}&orderID=${orderID}`,
-      })
+      
     }
   },
 
