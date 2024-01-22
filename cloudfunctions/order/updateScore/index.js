@@ -15,7 +15,7 @@ exports.main = async (event, context) => {
       })
       .update({
         data: {
-          Scores: _.push(event.data.score),
+          Scores: _.push(event.score),
         },
       });
     console.log(result);
