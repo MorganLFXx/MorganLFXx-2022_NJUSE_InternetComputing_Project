@@ -24,12 +24,6 @@ Page({
     identity: "",
     userID: "1",
   },
-  gotofeedback:function(){
-    wx.navigateTo({
-      url: '/pages/me/feedBack/index'
-    })
-  }
-  ,
 
   navigateHandler(e) {
     var id = parseInt(e.currentTarget.dataset.id);
@@ -53,8 +47,8 @@ Page({
 
   toEditInfo() {
     //跳转至编辑页面
-    wx.navigateTo({
-      url: `../../me/editInfo/index?identity=${this.data.identity}&nickname=${this.data.nickname}&isRegister=${false}`,//需要传递一个身份参数
+    wx.redirectTo({
+      url: `../../me/editInfo/index?isRegister=${false}`,//需要传递一个身份参数
     })
   },
 

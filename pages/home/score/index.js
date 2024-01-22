@@ -70,12 +70,15 @@ Page({
           data:{
             type: "updateScore",
             windowNo: this.data.windowNo,
-            dishID: dishes[i].ID,
+            ID: dishes[i].ID,
             score: this.data.pickers[0].selections[this.data.pickers[0].value],
           }
         }).then((res)=>{
           console.log(res)
+        }).catch((e)=>{
+          console.error(e)
         })
+        
       }
       for(var i = 0;i<dishes.length;i++){
         wx.cloud.callFunction({
@@ -88,8 +91,6 @@ Page({
             time: timeInfo,
           }
         }).then((res)=>{
-          // console.log(res);
-          console.log(12324)
         })
       }
       this.setData({
