@@ -1,7 +1,6 @@
 const inquireOrders = require("./inquireOrders/index");
 const inquireSpecificOrders = require("./inquireSpecificOrders/index");
 const settleOrder = require("./settleOrder/index");
-const deleteOrder = require("./deleteOrder/index");
 const addComment = require("./addComment/index");
 const ensure = require("./ensure/index");
 const updateScore = require("./updateScore/index");
@@ -19,8 +18,6 @@ exports.main = async (event, context) => {
       return await inquireSpecificOrders.main(event, context);
     case "settleOrder":
       return await settleOrder.main(event, context);
-    case "deleteOrder":
-      return await deleteOrder.main(event, context);
     case "addComment":
       return await addComment.main(event, context);
     case "ensure":

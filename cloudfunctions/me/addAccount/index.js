@@ -16,7 +16,7 @@ exports.main = async (event, context) => {
     newUser_id = "000000" + newUser_id;
     const idLength = newUser_id.length;
     newUser_id = newUser_id.substring(idLength - 6, idLength);
-    if (!isChef) {
+    if (isChef) {
       newUser_id = "888" + newUser_id.substring(3, 6);
     }
     db.collection("users").add({
