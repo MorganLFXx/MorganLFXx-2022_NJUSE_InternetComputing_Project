@@ -141,6 +141,7 @@ Page({
 
   leftBtnHandler(e) {
     if (this.data.isChef) { //厨师身份，进行删除
+      const index = parseInt(e.currentTarget.dataset.index)
       const id = e.currentTarget.dataset.id;
       console.log(id)
       wx.cloud.callFunction({
@@ -151,6 +152,9 @@ Page({
         },
       }).then((res) => {
         console.log(res)
+        var previewLMRs = this.data.previewLMRs;
+        previewLMRs[index].conditionForDisplay = false;
+        this.setData({previewLMRs: previewLMRs})
       })
     } else {
       var dishIndex = parseInt(e.currentTarget.dataset.index);

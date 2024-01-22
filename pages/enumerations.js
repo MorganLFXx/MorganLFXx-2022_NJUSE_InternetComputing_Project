@@ -4,6 +4,8 @@ export const studentRightBtnStoragePath = "../../../resources/navBar/unselectedO
 export const chefLeftBtnStoragePath = "../../../resources/navBar/selectedOrder.png"
 export const chefRightBtnStoragePath = "../../../resources/navBar/selectedOrder.png"
 export const lastImgStoragePath = "/resources/image/unknown.jpg"
+export const readyImgPath = "../../../resources/navBar/unselectedHome.png"
+export const unreadyImgPath = "../../../resources/navBar/selectedHome.png"
 
 export const UserType = {
   '学生': 0,

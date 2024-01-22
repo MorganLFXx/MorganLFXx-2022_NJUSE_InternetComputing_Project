@@ -25,6 +25,7 @@ Page({
         itemIndex: 0,
         alarmIfEmpty: '请输入姓名',
         alarmUnlessStandardized: '姓名应为纯中文',
+        value: ""
       }],
       pickers:[{
         conditionForDisplay: true,
@@ -46,24 +47,57 @@ Page({
     },
 
     submit(){
-      const isChef = this.data.pickers[0].value === 0;
-      console.log(isChef)
-      wx.cloud.callFunction({
-        name: "me",
-        data: {
-          type: "addAccount",
-          isChef: isChef,
-        },
-      }).then((res)=>{
-        console.log(res)
-        console.log(res.result.User_id)
-      })
-      this.setData({
-        isSubmitted: true,
-      })
-      wx.navigateTo({
-        url: `/pages/tabBar/home/index`,
-      })
+      if(this.data.isRegister){
+        const isChef = parseInt(this.data.pickers[0].value) === 1;
+        console.log(isChef)
+        console.log(1)
+        wx.cloud.callFunction({
+          name: "me",
+          data: {
+            type: "addAccount",
+            isChef: isChef,
+          },
+        }).then((res)=>{
+          const userID = res.result.User_id
+          wx.cloud.callFunction({
+            name: "me",
+            data: {
+              type: "changeName",
+              User_id: userID,
+              nickname: this.data.entries[0].value,
+            }
+          }).then((res)=>{
+            console.log(res)
+            this.setData({
+              isSubmitted: true,
+            })
+          })
+        })
+      } else {
+        console.log(2)
+        wx.cloud.callFunction({
+          name: "me",
+          data: {
+            type: "matchAccount",
+          }
+        }).then((res)=>{
+          console.log(res)
+          const userID = res.result.User_id
+          wx.cloud.callFunction({
+            name: "me",
+            data: {
+              type: "changeName",
+              User_id: userID,
+              nickname: this.data.entries[0].value,
+            }
+          }).then((res)=>{
+            console.log(res)
+            this.setData({
+              isSubmitted: true,
+            })
+          })
+        })
+      }
     },
 
     changeHandler(e) {
@@ -80,7 +114,7 @@ Page({
      */
     onLoad(options) {
       this.setData({
-        isRegister: options.isRegister,
+        isRegister: JSON.parse(options.isRegister),
       })
     },
 

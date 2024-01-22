@@ -38,6 +38,7 @@ Page({
         if (src.dishDetail[0].Scores.length > 0) {
           for (var i = 0; i < src.dishDetail[0].Scores.length; i++) sum += src.dishDetail[0].Scores[i]
           sum /= src.dishDetail[0].Scores.length;
+          sum = Math.floor(sum)
         }
         if(src.dishDetail[0].comments.length > 0){
           for(var i = 0;i < src.dishDetail[0].comments.length;i++) {

@@ -6,4 +6,9 @@
   </view> 
 </view>
 
+<view wx:if="{{isChef && !isFinish}}">
+  <button bind:tap="ensure">
+    完成
+  </button>
+</view>
 
