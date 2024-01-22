@@ -6,7 +6,7 @@ const db = cloud.database();
 const _ = db.command;
 exports.main = async (event, context) => {
   try {
-    const { windowNO, dishID, comment, issuingTime } = event;
+    const { windowNO, dishID, comment, time } = event;
     const window = db.collection(windowNO);
     const result = await window
       .where({
@@ -14,7 +14,7 @@ exports.main = async (event, context) => {
       })
       .update({
         data: {
-          comments: _.push({ comment, issuingTime }),
+          comments: _.push({ comment, time }),
         },
       });
     if (result.stats.updated > 0) {
