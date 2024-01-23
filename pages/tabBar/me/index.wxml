@@ -4,16 +4,14 @@
   </view>
   <view class="userblank_right">
     <view class="userblank_right_left">
-      <view class="userblank_right_left_text">{{'昵称：' + nickname}}</view>
-      <view class="userblank_right_left_text">{{'身份：' + identity}}</view>
+      <view class="userblank_right_left_nickname">{{'昵称：' + nickname}}</view>
+      <view class="userblank_right_left_identity">{{'身份：' + identity}}</view>
     </view>
     <view class="userblank_right_right">
       <image class="userblank_right_right_img" src="{{editBtn}}" bindtap="toEditInfo"></image>
     </view><!--修改按钮-->
   </view>
 </view>
-
-
 <!--选项栏-->
 <view>
   <import src="../../form/form" />

@@ -59,7 +59,6 @@
 }
 
 .preview_area_left_img {
-  border-radius: 50%;
   width: 100rpx;
   height: 100rpx;
 }

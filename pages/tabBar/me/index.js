@@ -7,19 +7,19 @@ Page({
   data: {
     previewLRs:[{
       id:0,
-      imagePath: "../../../resources/image/edit.png",//到时候用云存储的路径，节省主包空间
+      imagePath: "../../../resources/image/feedback.jpg",//到时候用云存储的路径，节省主包空间
       rightText: "意见反馈",
       page: "editInfo",
       conditionForDisplay: true,
     }, {
       id:1,
-      imagePath: "../../../resources/image/edit.png",
+      imagePath: "../../../resources/image/version.jpg",
       rightText: "版本信息",
       page: "feedBack",
       conditionForDisplay: true,
     }],
     portraitSrc: "../../../resources/image/unknown.jpg",
-    editBtn: "/resources/navBar/unselectedHome.png",
+    editBtn: "/resources/image/edit.png",
     nickname: "",
     identity: "",
     userID: "1",
