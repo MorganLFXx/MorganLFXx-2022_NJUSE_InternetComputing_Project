@@ -23,11 +23,11 @@ exports.main = async (event, context) => {
     const length = orders.length; //有几条记录
     //根据记录数量生成新的后三位顺序号
     var randomNo = parseInt(length);
-    randowNo++;
+    randomNo++;
     var randomNoStr = randomNo.toString();
     randomNoStr = "0000" + randomNoStr;
     const idLength = randomNoStr.length;
-    randowNoStr = randomNoStr.substring(idLength - 3, idLength);
+    randomNoStr = randomNoStr.substring(idLength - 3, idLength);
     //生成No
     var No = User_id + windowNo + randomNoStr;
     // 将订单信息存入以用户ID为名称的集合中
