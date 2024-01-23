@@ -56,7 +56,7 @@ Page({
           var imgPath;
           const isFinish = res.result.order.Status;
           var isChef;
-          const userID = res.result.order.User_id;
+          const userID = options.userID;
           if (userID.startsWith("888")) isChef = true;
           else isChef = false;
           if (isFinish) imgPath = readyImgPath;
@@ -75,6 +75,8 @@ Page({
             };
             previewLMRs.push(newPre);
           }
+          console.log(isFinish);
+          console.log(isChef)
           this.setData({
             isFinish: isFinish,
             isChef: isChef,
