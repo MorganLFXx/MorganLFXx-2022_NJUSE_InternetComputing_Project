@@ -101,7 +101,6 @@ Page({
   },
 
   inputHandler(e) {
-    console.log("editInfo Input handle")
     handleInput(e, this)
     var entries = this.data.entries;
     const index = e.currentTarget.dataset.itemindex;
@@ -136,7 +135,6 @@ Page({
       console.log(entries[i].isReady);
       flag &= entries[i].isReady;
     }
-    console.log(flag)
     this.setData({
       isReady: flag,
       value: e.detail.value,
@@ -145,7 +143,6 @@ Page({
   },
 
   changeImg() {
-    console.log(1)
     var page = this
     wx.chooseMedia({
       count: 1,
@@ -155,7 +152,6 @@ Page({
         // res.tempFilePaths 是一个数组，包含了用户选择的图片的本地文件路径
         console.log(res)
         const tempFilePath = res.tempFiles[0].tempFilePath;
-        console.log("选择的图片路径：" + tempFilePath);
         page.setData({
           tempFilePath: tempFilePath,
         })
@@ -170,13 +166,14 @@ Page({
   async submit() {
     //todo 向后端发送数据
     var cloudPath = this.data.lastImg;
+    var lastPreview = this.data.lastPreview;
     console.log(this.data.dishID.substring(0, this.data.dishID.length - 4))
     if (this.data.tempFilePath !== "") {
       cloudPath = 'images/' + this.data.dishID + '.png';
-      console.log(cloudPath)
     }
+    if(this.data.value !== "") lastPreview = this.data.value;
     let newDish = {
-      Description: this.data.lastPreview,
+      Description: lastPreview,
       ID: this.data.dishID,
       Name: this.data.entries[0].value,
       Picture_path: cloudPath,
@@ -187,10 +184,8 @@ Page({
         cloudPath: cloudPath,
         filePath: this.data.tempFilePath, // 本地文件路径
         success: res => {
-          console.log("上传成功", res.fileID);
           // 在这里可以保存图片在云端的 fileID，用于后续的操作
           newDish.Picture_path = res.fileID;
-          console.log(newDish.Picture_path)
           wx.cloud
           .callFunction({
             name: "home",
@@ -207,7 +202,7 @@ Page({
               icon: "success",
             })
             this.setData({
-              isSubmitted: true,
+              isSubmit: true,
               lastImg: cloudPath,
             });
           });
@@ -225,20 +220,19 @@ Page({
         },
       })
       .then((res) => {
-        console.log(newDish.Picture_path)
         console.log(res);
         wx.showToast({
           title: res.result.msg,
           icon: "success",
         })
         this.setData({
-          isSubmitted: true,
+          isSubmit: true,
           lastImg: cloudPath,
         });
       });
     }
     if(!this.data.isAdd){
-      console.log(1)
+      console.log(this.data.dishID)
       wx.cloud.callFunction({
         name: "home",
         data: {
