@@ -1,11 +1,11 @@
 //存放的是一些常用的枚举变量 --ykg
-export const studentLeftBtnStoragePath = "../../../resources/navBar/unselectedMe.png"//用于存放未来的云端的存储路径 --ykg
-export const studentRightBtnStoragePath = "../../../resources/navBar/unselectedOrder.png"
-export const chefLeftBtnStoragePath = "../../../resources/navBar/selectedOrder.png"
-export const chefRightBtnStoragePath = "../../../resources/navBar/selectedOrder.png"
-export const lastImgStoragePath = "/resources/image/unknown.jpg"
-export const readyImgPath = "../../../resources/navBar/unselectedHome.png"
-export const unreadyImgPath = "../../../resources/navBar/selectedHome.png"
+export const studentLeftBtnStoragePath = "cloud://cloud1-0gbl9besc0a67bab.636c-cloud1-0gbl9besc0a67bab-1323281460/images/add.png"//用于存放未来的云端的存储路径 --ykg
+export const studentRightBtnStoragePath = "cloud://cloud1-0gbl9besc0a67bab.636c-cloud1-0gbl9besc0a67bab-1323281460/images/sub.png"
+export const chefLeftBtnStoragePath = "cloud://cloud1-0gbl9besc0a67bab.636c-cloud1-0gbl9besc0a67bab-1323281460/images/F6SBYF742J{){_LY680732U.png"
+export const chefRightBtnStoragePath = "cloud://cloud1-0gbl9besc0a67bab.636c-cloud1-0gbl9besc0a67bab-1323281460/images/edit.png"
+export const lastImgStoragePath = "cloud://cloud1-0gbl9besc0a67bab.636c-cloud1-0gbl9besc0a67bab-1323281460/images/unknown.jpg"
+export const readyImgPath = "cloud://cloud1-0gbl9besc0a67bab.636c-cloud1-0gbl9besc0a67bab-1323281460/images/{_HPU[OF`GND(R`[H4ZW0US.png"
+export const unreadyImgPath = "cloud://cloud1-0gbl9besc0a67bab.636c-cloud1-0gbl9besc0a67bab-1323281460/images/93[PL1I6ECXQS22{$YQ2VQT.png"
 
 export const UserType = {
   '学生': 0,
