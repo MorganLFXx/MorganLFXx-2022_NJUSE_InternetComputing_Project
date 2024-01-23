@@ -72,7 +72,6 @@ Page({
     isChef: false, //判断当前用户的身份是否为厨师
     addImg: "", //添加按钮图片的路径
     hint: "当前筛选栏的排列无效",
-    hoverBtnImgPath: "/resources/image/unknown.jpg",
     isStandard: false,
     isEmpty: true,
     alarmUnlessFormed: "窗口名应为全中文",

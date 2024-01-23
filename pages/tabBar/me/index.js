@@ -1,4 +1,6 @@
 // pages/tabBar/me/index.js
+import {chefPortrait, studentPortrait} from "../../enumerations.js";
+
 Page({
 
   /**
@@ -7,19 +9,19 @@ Page({
   data: {
     previewLRs:[{
       id:0,
-      imagePath: "../../../resources/image/feedback.jpg",//到时候用云存储的路径，节省主包空间
+      imagePath: "cloud://cloud1-0gbl9besc0a67bab.636c-cloud1-0gbl9besc0a67bab-1323281460/images/feedback.jpg",//到时候用云存储的路径，节省主包空间
       rightText: "意见反馈",
       page: "editInfo",
       conditionForDisplay: true,
     }, {
       id:1,
-      imagePath: "../../../resources/image/version.jpg",
+      imagePath: "cloud://cloud1-0gbl9besc0a67bab.636c-cloud1-0gbl9besc0a67bab-1323281460/images/version.jpg",
       rightText: "版本信息",
       page: "feedBack",
       conditionForDisplay: true,
     }],
-    portraitSrc: "../../../resources/image/unknown.jpg",
-    editBtn: "/resources/image/edit.png",
+    portraitSrc: "",
+    editBtn: "cloud://cloud1-0gbl9besc0a67bab.636c-cloud1-0gbl9besc0a67bab-1323281460/images/edit.png",
     nickname: "",
     identity: "",
     userID: "1",
@@ -65,12 +67,21 @@ Page({
       console.log(res);
       const userID = res.result.User_id;
       var identity = ""
-      if(userID.startsWith("888")) identity = "厨师"
-      else identity = "学生"
+      var portraitSrc = "";
+      if(userID.startsWith("888")) {
+        identity = "厨师"
+        portraitSrc = chefPortrait;
+      }
+      else {
+        identity = "学生"
+        portraitSrc = studentPortrait;
+      }
+      console.log(portraitSrc)
       this.setData({
         userID: userID,
         nickname: res.result.nickname,
         identity: identity,
+        portraitSrc: portraitSrc,
       })
     })
   },

@@ -6,6 +6,8 @@ export const chefRightBtnStoragePath = "cloud://cloud1-0gbl9besc0a67bab.636c-clo
 export const lastImgStoragePath = "cloud://cloud1-0gbl9besc0a67bab.636c-cloud1-0gbl9besc0a67bab-1323281460/images/unknown.jpg"
 export const readyImgPath = "cloud://cloud1-0gbl9besc0a67bab.636c-cloud1-0gbl9besc0a67bab-1323281460/images/{_HPU[OF`GND(R`[H4ZW0US.png"
 export const unreadyImgPath = "cloud://cloud1-0gbl9besc0a67bab.636c-cloud1-0gbl9besc0a67bab-1323281460/images/93[PL1I6ECXQS22{$YQ2VQT.png"
+export const chefPortrait = "cloud://cloud1-0gbl9besc0a67bab.636c-cloud1-0gbl9besc0a67bab-1323281460/images/unknown.jpg"
+export const studentPortrait = "cloud://cloud1-0gbl9besc0a67bab.636c-cloud1-0gbl9besc0a67bab-1323281460/images/unknown.jpg"
 
 export const UserType = {
   '学生': 0,
