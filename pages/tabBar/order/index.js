@@ -37,6 +37,7 @@ Page({
    */
   onLoad(options) {
     var userID;
+    var tmpUserID;
     wx.cloud.callFunction({
       name: "me",
       data: {
@@ -44,23 +45,27 @@ Page({
       }
     }).then((res) => {
       userID = res.result.User_id
+      tmpUserID = userID;
       var isChef = false;
-      console.log(userID)
-      if (userID.startsWith("888")) isChef = true;
+      if (userID.startsWith("888")) {
+        isChef = true;
+        tmpUserID = "000" + userID.substring(3);
+      }
       wx.cloud.callFunction({
         name: "order",
         data: {
           type: "inquireOrders",
-          User_id: userID,
+          User_id: tmpUserID,
         }
       }).then((res) => {
+        console.log(res)
         if (res.result.success) {
-
           var previewLRs = [];
           console.log(res)
           const orders = res.result.orders;
           for (var i = 0; i < orders.length; i++) {
             let tmp1 = orders[i].Time.split('T');
+            console.log(tmp1)
             let tmp2 = tmp1[1].split('.');
             const time = tmp1[0] + " " + tmp2[0];
             const flag = orders[i].Status;
@@ -91,7 +96,7 @@ Page({
   navigateHandler(e) {
     const id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: `/pages/order/orderDetails/index?billID=${id}`,
+      url: `/pages/order/orderDetails/index?billID=${id}&userID=${this.data.userID}`,
     })
   },
 

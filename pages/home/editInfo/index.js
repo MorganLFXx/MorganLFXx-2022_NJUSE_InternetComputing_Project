@@ -48,6 +48,8 @@ Page({
     isReady: false,
     isSubmit: false,
     value: "",
+    tempFilePath: "",
+    cloudPath: "",
   },
 
   /**
@@ -66,7 +68,7 @@ Page({
     }).then((res) => {
       console.log(res)
       var src = res.result;
-      if (src.success===false || src.dishDetail.length === 0) {
+      if (src.success === false || src.dishDetail.length === 0) {
         this.setData({
           lastImg: lastImgStoragePath,
           lastPreview: "无",
@@ -139,36 +141,99 @@ Page({
     })
   },
 
-  submit() {
+  changeImg() {
+    console.log(1)
+    var page = this
+    wx.chooseMedia({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album'],
+      success: function (res) {
+        // res.tempFilePaths 是一个数组，包含了用户选择的图片的本地文件路径
+        console.log(res)
+        const tempFilePath = res.tempFiles[0].tempFilePath;
+        console.log("选择的图片路径：" + tempFilePath);
+        page.setData({
+          tempFilePath: tempFilePath,
+        })
+      },
+      fail: function (res) {
+        // 用户取消选择或发生其他错误时的处理
+        console.log("选择图片失败：" + res.errMsg);
+      }
+    })
+  },
+
+  async submit() {
     //todo 向后端发送数据
+    var cloudPath = this.data.lastImg;
     console.log(this.data.dishID.substring(0, this.data.dishID.length - 4))
+    if (this.data.tempFilePath !== "") {
+      cloudPath = 'images/' + this.data.dishID + '.png';
+      console.log(cloudPath)
+    }
     let newDish = {
       Description: this.data.lastPreview,
       ID: this.data.dishID,
       Name: this.data.entries[0].value,
-      Picture_path: this.data.lastImg,
-      Price: this.data.entries[1].value,
+      Picture_path: cloudPath,
+      Price: parseInt(this.data.entries[1].value),
     };
-    console.log(newDish)
-    wx.cloud
+    if (this.data.tempFilePath !== "") {
+      wx.cloud.uploadFile({
+        cloudPath: cloudPath,
+        filePath: this.data.tempFilePath, // 本地文件路径
+        success: res => {
+          console.log("上传成功", res.fileID);
+          // 在这里可以保存图片在云端的 fileID，用于后续的操作
+          newDish.Picture_path = res.fileID;
+          console.log(newDish.Picture_path)
+          wx.cloud
+          .callFunction({
+            name: "home",
+            data: {
+              type: "changeDish_Chef",
+              windowNo: this.data.dishID.substring(0, this.data.dishID.length - 4),
+              dish: newDish
+            },
+          })
+          .then((res) => {
+            console.log(res);
+            wx.showToast({
+              title: res.result.msg,
+              icon: "success",
+            })
+            this.setData({
+              isSubmitted: true,
+              lastImg: cloudPath,
+            });
+          });
+        },
+        fail: console.error
+      })
+    } else {
+      wx.cloud
       .callFunction({
         name: "home",
         data: {
           type: "changeDish_Chef",
           windowNo: this.data.dishID.substring(0, this.data.dishID.length - 4),
-          dish:newDish
+          dish: newDish
         },
       })
       .then((res) => {
+        console.log(newDish.Picture_path)
         console.log(res);
         wx.showToast({
           title: res.result.msg,
           icon: "success",
         })
+        this.setData({
+          isSubmitted: true,
+          lastImg: cloudPath,
+        });
       });
-    this.setData({
-      isSubmitted: true,
-    });
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
