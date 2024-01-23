@@ -157,10 +157,14 @@ Page({
         this.setData({previewLMRs: previewLMRs})
       })
     } else {
-      var dishIndex = parseInt(e.currentTarget.dataset.index);
-      console.log(dishIndex);
+      var dishId = e.currentTarget.dataset.id;
+      console.log(dishId)
       var previewLMRs = this.data.previewLMRs;
-      previewLMRs[dishIndex].rightText = previewLMRs[dishIndex].rightText + 1;
+      for(var i = 0;i<previewLMRs.length;i++)
+        if(previewLMRs[i].id === dishId){
+          previewLMRs[i].rightText += 1;
+          break;
+        }
       this.setData({
         previewLMRs: previewLMRs,
       })
@@ -170,13 +174,17 @@ Page({
   rightBtnHandler(e) {
     if (this.data.isChef) { //厨师身份，进行修改
       wx.redirectTo({
-        url: `/pages/home/editInfo/index?dishID=${e.currentTarget.dataset.id}`,
+        url: `/pages/home/editInfo/index?dishID=${e.currentTarget.dataset.id}&isAdd=${false}`,
       })
     } else {
-      var dishIndex = parseInt(e.currentTarget.dataset.index);
-      console.log(dishIndex);
+      var dishId = e.currentTarget.dataset.id;
       var previewLMRs = this.data.previewLMRs;
-      if (previewLMRs[dishIndex].rightText > 0) previewLMRs[dishIndex].rightText = previewLMRs[dishIndex].rightText - 1;
+      for(var i = 0;i<previewLMRs.length;i++)
+        if(previewLMRs[i].id === dishId)
+          if(previewLMRs[i].rightText > 0){
+            previewLMRs[i].rightText -= 1;
+            break;
+          }
       this.setData({
         previewLMRs: previewLMRs,
       })
@@ -233,6 +241,9 @@ Page({
             previewLMRs.push(newPre);
           }
         }
+        previewLMRs.sort(function(a, b){
+          return parseInt(a.id) - parseInt(b.id)
+        })
         this.setData({
           previewLMRs: previewLMRs,
         })
@@ -269,7 +280,7 @@ Page({
         newID = curWindowNo + this.expand("1", 4);
       }
       wx.redirectTo({
-        url: `/pages/home/editInfo/index?dishID=${newID}`, //全一广播地址
+        url: `/pages/home/editInfo/index?dishID=${newID}&isAdd=${true}`, //全一广播地址
       })
     } else {
       const previewLMRs = this.data.previewLMRs;

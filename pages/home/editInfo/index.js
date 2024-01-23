@@ -50,6 +50,7 @@ Page({
     value: "",
     tempFilePath: "",
     cloudPath: "",
+    isAdd: false,
   },
 
   /**
@@ -85,10 +86,12 @@ Page({
         entries[1].isReady = true;
         entries[1].isStandard = true;
         entries[1].isEmpty = false;
+        console.log(options.isAdd)
         this.setData({
           lastPreview: src.dishDetail[0].Description,
           lastImg: src.dishDetail[0].Picture_path,
-          entries: entries
+          entries: entries,
+          isAdd: JSON.parse(options.isAdd)
         })
       }
     })
@@ -233,6 +236,18 @@ Page({
           lastImg: cloudPath,
         });
       });
+    }
+    if(!this.data.isAdd){
+      console.log(1)
+      wx.cloud.callFunction({
+        name: "home",
+        data: {
+          type: "deleteDish_Chef",
+          ID: this.data.dishID,
+        }
+      }).then((res)=>{
+        console.log(res)
+      })
     }
   },
   /**

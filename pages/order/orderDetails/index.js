@@ -75,8 +75,6 @@ Page({
             };
             previewLMRs.push(newPre);
           }
-          console.log(isFinish);
-          console.log(isChef)
           this.setData({
             isFinish: isFinish,
             isChef: isChef,
