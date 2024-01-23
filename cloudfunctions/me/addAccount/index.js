@@ -10,7 +10,7 @@ exports.main = async (event, context) => {
     const collection = await db.collection("users").get();
     const users = collection.data;
     const length = users.length;
-    var UserID = parseInt(users[length - 1].User_id);
+    var UserID = parseInt(users[length - 1].User_id.substring(3,6));
     UserID++;
     var newUser_id = UserID.toString();
     newUser_id = "000000" + newUser_id;
@@ -18,6 +18,8 @@ exports.main = async (event, context) => {
     newUser_id = newUser_id.substring(idLength - 6, idLength);
     if (isChef) {
       newUser_id = "888" + newUser_id.substring(3, 6);
+    }else{
+        db.createCollection(`orders_${newUser_id}`);
     }
     db.collection("users").add({
       data: {
