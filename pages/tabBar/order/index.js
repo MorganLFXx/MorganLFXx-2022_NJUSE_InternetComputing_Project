@@ -95,7 +95,7 @@ Page({
 
   navigateHandler(e) {
     const id = e.currentTarget.dataset.id;
-    wx.navigateTo({
+    wx.redirectTo({
       url: `/pages/order/orderDetails/index?billID=${id}&userID=${this.data.userID}`,
     })
   },

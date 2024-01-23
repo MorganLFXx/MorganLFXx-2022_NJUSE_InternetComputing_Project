@@ -91,8 +91,8 @@
 }
 
 .preview_area_rightLMR_left_text {
-  font-size: 24rpx;
-  font-weight: 500;
+  font-size: 36rpx;
+  font-weight: 600;
 }
 
 .preview_area_rightLMR_right {
@@ -106,7 +106,7 @@
   width: 15%;
   justify-content: center;
   align-items: center;
-  font-size: 24rpx;
+  font-size: 36rpx;
   font-weight: 500;
 }
 
@@ -118,8 +118,8 @@
 }
 
 .my_btn {
-  height: 100rpx;
-  width: 100rpx;
+  height: 50rpx;
+  width: 50rpx;
 }
 
 .power_info_less {
