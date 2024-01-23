@@ -169,7 +169,7 @@ Page({
 
   rightBtnHandler(e) {
     if (this.data.isChef) { //厨师身份，进行修改
-      wx.navigateTo({
+      wx.redirectTo({
         url: `/pages/home/editInfo/index?dishID=${e.currentTarget.dataset.id}`,
       })
     } else {
@@ -268,7 +268,7 @@ Page({
       } else {
         newID = curWindowNo + this.expand("1", 4);
       }
-      wx.navigateTo({
+      wx.redirectTo({
         url: `/pages/home/editInfo/index?dishID=${newID}`, //全一广播地址
       })
     } else {

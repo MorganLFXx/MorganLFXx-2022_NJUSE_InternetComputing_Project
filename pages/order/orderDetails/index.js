@@ -54,12 +54,11 @@ Page({
       }
     }).then((res) => {
       if (res.result.success) {
-
         console.log(res);
         var imgPath
         const isFinish = res.result.order.Status;
         var isChef;
-        const userID = res.result.order.User_id
+        const userID = options.userID
         if (userID.startsWith("888")) isChef = true;
         else isChef = false;
         if (isFinish) imgPath = readyImgPath
@@ -90,9 +89,11 @@ Page({
   },
 
   ensure() {
+    console.log(this.data.id)
     wx.cloud.callFunction({
       name: "order",
       data: {
+        type: "ensure",
         No: this.data.id,
       }
     }).then((res) => {
