@@ -5,7 +5,7 @@ cloud.init({
 const db = cloud.database();
 exports.main = async (event, context) => {
   try {
-    const orderNo = event;
+    const orderNo = event.orderNo;
     const User_id = orderNo.substring(0, 6);
     const orders = db.collection(`orders_${User_id}`);
     const result = await orders
@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
         No: orderNo,
       })
       .update({
-        status: true,
+        data: { Status: true },
       });
     return true;
   } catch (e) {
