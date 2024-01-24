@@ -46,7 +46,7 @@ Page({
             let tmp2 = tmp1[1].split('.');
             const time = tmp1[0] + " " + tmp2[0];
             let newComment = {
-              content: src.dishDetail[0].comments[i].comment,
+              content: src.dishDetail[0].comments[i].content,
               time: time,
               trueTime: src.dishDetail[0].comments[i].time
             }
